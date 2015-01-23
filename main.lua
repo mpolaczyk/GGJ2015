@@ -4,56 +4,32 @@ gmRun = require "gmRun"
 gmEnd = require "gmEnd"
 gmCurse = require "gmCurse"
 
--- const game modes
-GM_Start = gmStart.moduleName
-GM_Run = gmRun.moduleName
-GM_End = gmEnd.moduleName
-GM_Curse = gmCurse.moduleName
 
--- game state
-currentModule = GM_Start;
-
+GM_Start = nil
+GM_Run = nil
+GM_End = nil
+GM_Curse = nil
 
 
 function love.load()
-	-- push execution to current module
-    if currentModule == GM_Start then
-		gmStart.load()
-    elseif currentModule == GM_Run then
-        gmRun.load()
-    elseif currentModule == GM_End then
-		gmEnd.load()
-    elseif currentModule == GM_Curse then
-		gmCurse.load()
-    end
+	GM_Start = gmStart.new()
+	GM_Run = gmRun.new()
+	GM_End = gmEnd.new()
+	GM_Curse = gmCurse.new()
+	
+	currentModule = GM_Start;
 end
 
 
 function love.update(dt)
 	-- push execution to current module
-    if currentModule == GM_Start then
-		gmStart.update()
-    elseif currentModule == GM_Run then
-        gmRun.update()
-    elseif currentModule == GM_End then
-		gmEnd.update()
-    elseif currentModule == GM_Curse then
-		gmCurse.update()
-    end
+    currentModule:update(dt)
 end
 
 
 function love.draw()
 	-- push execution to current module
-	if currentModule == GM_Start then
-		gmStart.draw()
-    elseif currentModule == GM_Run then
-        gmRun.draw()
-    elseif currentModule == GM_End then
-		gmEnd.draw()
-    elseif currentModule == GM_Curse then
-		gmCurse.draw()
-    end
+	currentModule:draw()
 end
 
 function love.keypressed(key)

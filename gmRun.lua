@@ -1,22 +1,28 @@
 
 -- public interface
 local gmRun = {}
-gmRun.moduleName = "gmRun"
+gmRun.__index = gmRun
 
-function gmRun.load()
+function gmRun.new()
+  local self = setmetatable({}, gmRun)
+  self.moduleName = "gmRun"
+  return self
+end
+
+function gmRun:load()
     
 end
 
-function gmRun.update(dt)
+function gmRun:update(dt)
     
 end
 
-function gmRun.draw()
+function gmRun:draw()
     love.graphics.setColor(0, 255, 100, 255)
-    love.graphics.print("This is " .. gmRun.moduleName .. " module", 10, 10)
+    love.graphics.print("This is " .. self.moduleName .. " module", 10, 10)
 end
 
-function gmRun.keypressed(key)
+function gmRun:keypressed(key)
 	
 end
 
