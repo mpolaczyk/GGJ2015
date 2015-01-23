@@ -1,0 +1,10 @@
+# Emacs
+.#*
+*#*#*
+*~
+
+*.bat
+*.sh
+*.py
+
+game.love
