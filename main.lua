@@ -1,21 +1,22 @@
 
-gmStart = require "gmStart"
-gmRun = require "gmRun"
-gmEnd = require "gmEnd"
-gmCurse = require "gmCurse"
-
+gmStart = require "game_mode_start"
+gmRun = require "game_mode_run"
+gmEnd = require "game_mode_end"
+gmCurse = require "game_mode_curse"
+gs = require "game_state"
 
 GM_Start = nil
 GM_Run = nil
 GM_End = nil
 GM_Curse = nil
-
+GS = nil
 
 function love.load()
 	GM_Start = gmStart.new()
 	GM_Run = gmRun.new()
 	GM_End = gmEnd.new()
 	GM_Curse = gmCurse.new()
+	GS = gs.new()
 	
 	currentModule = GM_Start;
 end
