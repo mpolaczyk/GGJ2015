@@ -20,14 +20,6 @@ function love.draw()
 end
 
 function love.keypressed(key)
-	-- test code, remove this. I use this to artificially change modules
-	if key == "s" then
-		GS.currentGameMode = GS.GM_Start
-    elseif key == "r" then
-        GS.currentGameMode = GS.GM_Run
-    elseif key == "e" then
-		GS.currentGameMode = GS.GM_End
-    elseif key == "c" then
-		GS.currentGameMode = GS.GM_Curse
-    end
+	-- push execution to current module
+	GS.currentGameMode:keypressed(key)
 end

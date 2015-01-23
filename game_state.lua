@@ -8,26 +8,41 @@ local gmCurse = require "game_mode_curse"
 local gameStateClass = {}
 gameStateClass.__index = gameStateClass
 
-GM_Start = nil
-GM_Run = nil
-GM_End = nil
-GM_Curse = nil
-
-currentGameMode = nil
-
 function gameStateClass.new()
 	local self = setmetatable({}, gameStateClass)
 	
 	self.moduleName = "gameStateClass"
 	
-	self.GM_Start = gmStart.new()
-	self.GM_Run = gmRun.new()
-	self.GM_End = gmEnd.new()
-	self.GM_Curse = gmCurse.new()
+	self.GM_Start = gmStart.new(self)
+	self.GM_Run = gmRun.new(self)
+	self.GM_End = gmEnd.new(self)
+	self.GM_Curse = gmCurse.new(self)
+	
+	self.actionAllReady = "all_ready"
+	self.actionCurseResult = "curse_result"
+	self.actionPlayerWin = "player_win"
+	self.actionBadGuyContact = "bad_guy_contact"
 	
 	self.currentGameMode = self.GM_Start
 	
 	return self
+end
+
+
+function gameStateClass:callGameModeAction(actionName)
+	-- FSM transitions
+	
+	if actionName == self.actionAllReady and self.currentGameMode == self.GM_Start then
+		self.currentGameMode = self.GM_Run
+	elseif actionName == self.actionPlayerWin and self.currentGameMode == self.GM_Run then
+		self.currentGameMode = self.GM_End
+	elseif actionName == self.actionBadGuyContact and self.currentGameMode == self.GM_Run then
+		self.currentGameMode = self.GM_Curse
+	elseif actionName == self.actionCurseResult and self.currentGameMode == self.GM_Curse then
+		self.currentGameMode = self.GM_Run
+	else
+		error("invalid game state transition")
+	end
 end
 
 return gameStateClass

@@ -4,9 +4,10 @@ local gameModeStartClass = {}
 gameModeStartClass.__index = gameModeStartClass
 
 
-function gameModeStartClass.new()
+function gameModeStartClass.new(gameState)
   local self = setmetatable({}, gameModeStartClass)
   self.moduleName = "gameModeStartClass"
+  self.gameState = gameState
   return self
 end
 
@@ -24,7 +25,9 @@ function gameModeStartClass:draw()
 end
 
 function gameModeStartClass:keypressed(key)
-	
+	if key == "1" then
+		self.gameState:callGameModeAction(self.gameState.actionAllReady)
+	end
 end
 
 return gameModeStartClass

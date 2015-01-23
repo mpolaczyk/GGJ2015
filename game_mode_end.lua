@@ -4,9 +4,10 @@ local gameModeEndClass = {}
 gameModeEndClass.__index = gameModeEndClass
 
 
-function gameModeEndClass.new()
+function gameModeEndClass.new(gameState)
   local self = setmetatable({}, gameModeEndClass)
   self.moduleName = "gameModeEndClass"
+  self.gameState = gameState
   return self
 end
 

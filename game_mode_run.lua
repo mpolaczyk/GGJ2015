@@ -4,9 +4,10 @@ local gameModeRunClass = {}
 gameModeRunClass.__index = gameModeRunClass
 
 
-function gameModeRunClass.new()
+function gameModeRunClass.new(gameState)
   local self = setmetatable({}, gameModeRunClass)
   self.moduleName = "gameModeRunClass"
+  self.gameState = gameState
   return self
 end
 
@@ -24,7 +25,11 @@ function gameModeRunClass:draw()
 end
 
 function gameModeRunClass:keypressed(key)
-	
+	if key == "4" then
+		self.gameState:callGameModeAction(self.gameState.actionPlayerWin)
+	elseif key == "2" then
+		self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
+	end
 end
 
 return gameModeRunClass

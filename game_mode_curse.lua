@@ -4,9 +4,10 @@ local gameModeCurseClass = {}
 gameModeCurseClass.__index = gameModeCurseClass
 
 
-function gameModeCurseClass.new()
+function gameModeCurseClass.new(gameState)
   local self = setmetatable({}, gameModeCurseClass)
   self.moduleName = "gameModeCurseClass"
+  self.gameState = gameState
   return self
 end
 
@@ -24,7 +25,9 @@ function gameModeCurseClass:draw()
 end
 
 function gameModeCurseClass:keypressed(key)
-	
+	if key == "3" then
+		self.gameState:callGameModeAction(self.gameState.actionCurseResult)
+	end
 end
 
 return gameModeCurseClass
