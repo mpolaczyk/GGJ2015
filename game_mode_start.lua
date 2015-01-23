@@ -3,6 +3,7 @@
 local gameModeStartClass = {}
 gameModeStartClass.__index = gameModeStartClass
 
+
 function gameModeStartClass.new()
   local self = setmetatable({}, gameModeStartClass)
   self.moduleName = "gameModeStartClass"

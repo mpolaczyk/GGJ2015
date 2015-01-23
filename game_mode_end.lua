@@ -3,6 +3,7 @@
 local gameModeEndClass = {}
 gameModeEndClass.__index = gameModeEndClass
 
+
 function gameModeEndClass.new()
   local self = setmetatable({}, gameModeEndClass)
   self.moduleName = "gameModeEndClass"
