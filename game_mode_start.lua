@@ -50,67 +50,23 @@ function gameModeStartClass:update(dt)
 	end
 end
 
+
 function gameModeStartClass:draw()
 	-- detect mouse click
 	if love.mouse.isDown("l") or love.mouse.isDown("r") then
 		self.playerDReady = true
 	end
 	
-	-- draw panels
-	love.graphics.draw(self.playerAPane, 50, 50, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerBPane, 500, 50, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerCPane, 950, 50, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerDPane, 500, 400, 0, 1, 1, 0, 0)
-	
-	-- draw faces
-	love.graphics.draw(self.playerAFace, 200, 150, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerBFace, 650, 150, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerCFace, 1100, 150, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerDFace, 650, 500, 0, 1, 1, 0, 0)
-
-	-- save current colors
-	local r, g, b, a = love.graphics.getColor( )
-	
-	-- draw texts
-	if self.playerAReady then
-		love.graphics.setColor(255, 0, 0, 255)
-		love.graphics.print("READY!", 270, 240, 0, 2, 2)
-	else
-		love.graphics.setColor(0, 255, 0, 255)
-		love.graphics.print("HIT A KEY!", 270, 240, 0, 2, 2)
-	end
-	
-	if self.playerBReady then
-		love.graphics.setColor(255, 0, 0, 255)
-		love.graphics.print("READY!", 730, 240, 0, 2, 2)
-	else
-		love.graphics.setColor(0, 255, 0, 255)
-		love.graphics.print("HIT A KEY!", 730, 240, 0, 2, 2)
-	end
-	
-	if self.playerCReady then
-		love.graphics.setColor(255, 0, 0, 255)
-		love.graphics.print("READY!", 1170, 240, 0, 2, 2)
-	else
-		love.graphics.setColor(0, 255, 0, 255)
-		love.graphics.print("HIT A KEY!", 1170, 240, 0, 2, 2)
-	end
-	
-	if self.playerDReady then
-		love.graphics.setColor(255, 0, 0, 255)
-		love.graphics.print("READY!", 730, 630, 0, 2, 2)
-	else
-		love.graphics.setColor(0, 255, 0, 255)
-		love.graphics.print("HIT A KEY!", 730, 630, 0, 2, 2)
-	end
+	-- draw player panels
+	self:drawPlayerPanel(50, 50, self.playerAPane, self.playerAFace, self.playerAReady)
+	self:drawPlayerPanel(500, 50, self.playerBPane, self.playerBFace, self.playerBReady)
+	self:drawPlayerPanel(950, 50, self.playerCPane, self.playerCFace, self.playerCReady)
+	self:drawPlayerPanel(500, 400, self.playerDPane, self.playerDFace, self.playerDReady)
 	
 	-- draw counter
 	if self.counterStartTimeStamp > 0 then
 		
 	end
-	
-	 -- restore colors
-	love.graphics.setColor(r,g,b,a)
 end
 
 function gameModeStartClass:keypressed(key)
@@ -122,6 +78,30 @@ function gameModeStartClass:keypressed(key)
 	elseif key == "up" or key == "down" or key == "left" or key == "right" then
 		self.playerCReady = true
 	end
+end
+
+
+function gameModeStartClass:drawPlayerPanel(x, y, panelImage, faceImage, ifReady)
+	-- draw panels
+	love.graphics.draw(panelImage, x, y, 0, 1, 1, 0, 0)
+	
+	-- draw faces
+	love.graphics.draw(faceImage, x+150, y+100, 0, 1, 1, 0, 0)
+	
+	-- save current color
+	local r, g, b, a = love.graphics.getColor( )
+	
+	-- draw texts
+	if ifReady then
+		love.graphics.setColor(255, 0, 0, 255)
+		love.graphics.print("READY!", x+220, y+190, 0, 2, 2)
+	else
+		love.graphics.setColor(0, 255, 0, 255)
+		love.graphics.print("HIT A KEY!", x+220, y+190, 0, 2, 2)
+	end
+	
+	 -- restore colors
+	love.graphics.setColor(r,g,b,a)
 end
 
 return gameModeStartClass
