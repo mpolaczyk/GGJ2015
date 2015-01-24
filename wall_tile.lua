@@ -18,16 +18,16 @@ function wallTileClass.new(pos, dim)
 end
 
 function wallTileClass:draw()
-   x, y = self.physics.body:getPosition()
-   -- WARNING: assumption that the graphic is of required size!
+   local x, y = self.physics.body:getPosition()
+   scale = {self.dim/self.sprite:getWidth(), self.dim/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
 		      x, 
 		      y, 
 		      nil,
-		      nil,
-		      nil,
-		      self.dim/2, 
-		      self.dim/2)
+		      scale[1],
+		      scale[2],
+		      nil, 
+		      nil)
 end
 
 return wallTileClass

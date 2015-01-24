@@ -12,14 +12,15 @@ function pathTileClass.new(pos, dim)
 end
 
 function pathTileClass:draw()
+   scale = {self.dim/self.sprite:getWidth(), self.dim/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
 		      self.pos.x, 
 		      self.pos.y, 
 		      nil,
-		      nil,
-		      nil,
-		      self.dim/2, 
-		      self.dim/2)
+		      scale[1],
+		      scale[2],
+		      nil, 
+		      nil)
 end
 
 return pathTileClass
