@@ -4,12 +4,14 @@ local pathTileClass = require "path_tile"
 local wallTileClass = require "wall_tile"
 
 local tilemapClass = {}
-local tileDimension = 20
+local tileDimension = 22
 tilemapClass.__index = tilemapClass
 
 -- 0 - wall, 1 - path
 local numRows = 34
 local numCols = 40
+tilemapClass.width = numCols*tileDimension
+tilemapClass.height = numRows*tileDimension
 local tilemapPattern = 
 {
  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
@@ -55,8 +57,8 @@ function tilemapClass.new(pos)
    for i=1,numRows,1 do
       local row = {}
       for j=1,numCols,1 do
- 	 local position = {x = (j-1)*tileDimension + pos.x + tileDimension/2,
-			   y = (i-1)*tileDimension + pos.y + tileDimension/2}
+ 	 local position = {x = (j-1)*tileDimension + pos.x + tileDimension,
+			   y = (i-1)*tileDimension + pos.y + tileDimension}
 	 if tilemapPattern[i][j] == 0 then
 	    table.insert(row, pathTileClass.new(position,
 						tileDimension))
@@ -68,7 +70,6 @@ function tilemapClass.new(pos)
       end
       table.insert(self.tiles, row)
    end
-
    return self
 end
 

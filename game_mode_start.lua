@@ -14,9 +14,9 @@ function gameModeStartClass.new(gameState)
 	self.playerCReady = false
 	self.playerDReady = false
   
-	self.counterStartTimeStamp = 0
 	self.counterDigit = 3;
-	self.counterMaxMs = 3000;
+	self.counterMax = 4.0;
+	self.counterCurrent = 0.0;
   
 	return self
 end
@@ -35,27 +35,18 @@ end
 function gameModeStartClass:update(dt)
     
 	-- check if game mode done
-	if self.playerAReady and self.playerBReady and self.playerCReady then
-		if self.counterStartTimeStamp == 0 then
-			-- save moment when players are ready
-			self.counterStartTimeStamp = love.timer.getTime( )
-		else
-			
-		end
+	if self.playerAReady and self.playerBReady and self.playerCReady and self.playerDReady then
+	   self.counterCurrent = self.counterCurrent + dt
 	end
 	
 	-- change game mode
-	if self.counterStartTimeStamp == self.counterMaxMs then
-		self.gameState:callGameModeAction(self.gameState.actionAllReady)
+	if self.counterCurrent >= self.counterMax then
+	   self.gameState:callGameModeAction(self.gameState.actionAllReady)
 	end
 end
 
 
 function gameModeStartClass:draw()
-	-- detect mouse click
-	if love.mouse.isDown("l") or love.mouse.isDown("r") then
-		self.playerDReady = true
-	end
 	
 	-- draw player panels
 	self:drawPlayerPanel(50, 50, self.playerAPane, self.playerAFace, self.playerAReady)
@@ -64,8 +55,17 @@ function gameModeStartClass:draw()
 	self:drawPlayerPanel(500, 400, self.playerDPane, self.playerDFace, self.playerDReady)
 	
 	-- draw counter
-	if self.counterStartTimeStamp > 0 then
-		
+	if self.counterCurrent > 0 then
+	   love.graphics.setNewFont(220)
+	   love.graphics.setColor(255, 0, 0)
+	   local val = math.floor(self.counterMax - self.counterCurrent)
+	   if (val > 0) then
+	      love.graphics.printf(val, 0, 275, 1366, 'center')
+	   else
+	      love.graphics.printf("START", 0, 275, 1366, 'center')
+	   end
+	   love.graphics.setColor(255, 255, 255)
+	   love.graphics.setNewFont(12)
 	end
 end
 
@@ -80,6 +80,12 @@ function gameModeStartClass:keypressed(key)
 	end
 end
 
+function gameModeStartClass:mousepressed(x, y, button)
+end
+
+function gameModeStartClass:mousereleased(x, y, button)
+	self.playerDReady = true
+end
 
 function gameModeStartClass:drawPlayerPanel(x, y, panelImage, faceImage, ifReady)
 	-- draw panels

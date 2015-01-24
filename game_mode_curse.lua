@@ -51,4 +51,11 @@ function gameModeCurseClass:keypressed(key)
 	end
 end
 
+function gameModeCurseClass:mousepressed(x, y, button)
+end
+
+function gameModeCurseClass:mousereleased(x, y, button)
+	self.playerDReady = true
+end
+
 return gameModeCurseClass
