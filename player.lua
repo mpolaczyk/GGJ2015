@@ -9,8 +9,10 @@ function playerClass.new(avatarPath, pos, size)
   local self = setmetatable({}, playerClass)
   self.sprite = love.graphics.newImage(avatarPath)
   self.size = size
+  local hitbox_size = {width = self.size.width*0.5,
+		       height = self.size.width*0.5}
   self.physics = physicsClass.new(pos,
-				  size, 
+				  hitbox_size, 
 				  "Player",
 				  "dynamic")
   self.physics.body:setFixedRotation(true)

@@ -109,16 +109,12 @@ function gameModeRunClass:handleMouseInput()
    local currX, currY = love.mouse.getPosition()
    local tolerance = 75
    if lastX + tolerance < currX then
-   -- left
       self.player4.physics.body:setLinearVelocity(playerSpeed, 0)
    elseif lastX > currX + tolerance then
-   -- right
       self.player4.physics.body:setLinearVelocity(-playerSpeed, 0)
    elseif lastY + tolerance < currY then
-   -- up
       self.player4.physics.body:setLinearVelocity(0, playerSpeed)
    elseif lastY > currY + tolerance then
-   -- down
       self.player4.physics.body:setLinearVelocity(0, -playerSpeed)
    end
    self.lastMousePos.x = currX
