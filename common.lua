@@ -2,10 +2,11 @@
 local commonClass = {}
 
 -- fonts
-h1Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 74)
-h2Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 64)
-h3Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 54)
-h4Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 44)
+h0Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 94)
+h1Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 74)
+h2Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 64)
+h3Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 54)
+h4Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 44)
 
 
 function commonClass.drawText(style, text, x, y, limit, align, color)
@@ -22,11 +23,15 @@ function commonClass.drawText(style, text, x, y, limit, align, color)
 		love.graphics.setFont(h3Font);
 	elseif style == "h4" then
 		love.graphics.setFont(h4Font);
+	elseif style == "h0" then
+		love.graphics.setFont(h0Font);
 	end
 	if color == "white" then
 		love.graphics.setColor(255,255,255)
 	elseif color == "black" then
 		love.graphics.setColor(0, 0, 0)
+	elseif color == "red" then
+		love.graphics.setColor(255, 0, 0)
 	end
     love.graphics.printf(text, x, y, limit, align)
 	

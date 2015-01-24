@@ -13,7 +13,7 @@ function gameModeCurseClass.new(gameState)
 end
 
 function gameModeCurseClass:load()
-    self.backgroundImage = love.graphics.newImage("img/bg.png")
+    self.backgroundImage = love.graphics.newImage("img/bg_curse.png")
 	self.enterImage = love.graphics.newImage("img/enter.png")
 	
 	-- players 
@@ -35,7 +35,7 @@ function gameModeCurseClass:draw()
 	-- title
 	common.drawText("h2", "One of your companions was caught !", 0, 20, 1366, "center", "black")
 	common.drawText("h4", "What do you do now ?", 0, 90, 1366, "center", "black")
-	common.drawText("h4", "Choose an option for ONE of you !", 0, 160, 1366, "center", "black")
+	common.drawText("h4", "Apply ONE curse on ONE of you !", 0, 160, 1366, "center", "black")
 	
 	-- faces
 	love.graphics.draw(self.playerAFace, 50, 200, 0, 0.5, 0.5)

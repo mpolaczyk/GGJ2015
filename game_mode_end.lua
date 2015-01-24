@@ -31,7 +31,7 @@ end
 function gameModeEndClass:draw()
 	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
-	common.drawText("h2", "Victory", 0, 50, 1366, "center", "black")
+	common.drawText("h1", "Victory !", 0, 50, 1366, "center", "black")
 	
 	if self.gameState.playersVictory then
 		-- faces
@@ -39,12 +39,12 @@ function gameModeEndClass:draw()
 		love.graphics.draw(self.playerBFace, 550, 400)
 		love.graphics.draw(self.playerCFace, 1000, 400)
 		-- text
-		common.drawText("h3", "You've collected required amount of gold.", 0, 200, 1366, "center", "black")
+		common.drawText("h2", "You've collected required amount of gold !", 0, 200, 1366, "center", "black")
 	elseif self.gameState.badGuyVictory then
 		-- face
 		love.graphics.draw(self.playerDFace, 550, 400)
 		-- text
-		common.drawText("h3", "You've caught players required number of times.", 0, 200, 1366, "center", "black")
+		common.drawText("h2", "You've caught players required number of times !", 0, 200, 1366, "center", "black")
 	end
 end
 
