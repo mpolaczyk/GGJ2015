@@ -1,15 +1,15 @@
 
 local gs = require "game_state"
 
+-- game state instance
 GS = nil
+
+-- init random seed
+math.randomseed( os.time() )
 
 function love.load()
    GS = gs.new()
    love.window.setMode(1366, 768, {fullscreen=true})
-	
-	-- init random seed
-	math.randomseed( os.time() )
-	math.random(); math.random(); math.random()
 end
 
 
