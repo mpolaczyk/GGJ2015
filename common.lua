@@ -2,10 +2,10 @@
 local commonClass = {}
 
 -- fonts
-h1Font = love.graphics.newFont("font/Amburegul.ttf", 54);
-h2Font = love.graphics.newFont("font/Amburegul.ttf", 44);
-h3Font = love.graphics.newFont("font/Amburegul.ttf", 34);
-h4Font = love.graphics.newFont("font/Amburegul.ttf", 24);
+h1Font = love.graphics.newFont("font/Amburegul.ttf", 54)
+h2Font = love.graphics.newFont("font/Amburegul.ttf", 44)
+h3Font = love.graphics.newFont("font/Amburegul.ttf", 34)
+h4Font = love.graphics.newFont("font/Amburegul.ttf", 24)
 
 
 function commonClass.drawText(style, text, x, y, limit, align, color)
@@ -34,11 +34,6 @@ function commonClass.drawText(style, text, x, y, limit, align, color)
 	love.graphics.setFont(font)
 	love.graphics.setColor(r,g,b,a)
 end
-
-function commonClass.drawH1(text, x, y, limit, align)
-	
-end
-
 
 
 return commonClass

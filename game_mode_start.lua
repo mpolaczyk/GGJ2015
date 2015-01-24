@@ -27,10 +27,10 @@ function gameModeStartClass:load()
 	self.playerBPane = love.graphics.newImage("img/uhjk.png")
 	self.playerCPane = love.graphics.newImage("img/strzalki.png")
 	self.playerDPane = love.graphics.newImage("img/mouse.png")
-	self.playerAFace = love.graphics.newImage("img/blue.png")
-	self.playerBFace = love.graphics.newImage("img/red.png")
-	self.playerCFace = love.graphics.newImage("img/yellow.png")
-	self.playerDFace = love.graphics.newImage("img/evil.png")
+	self.playerAFace = love.graphics.newImage("img/player_a.png")
+	self.playerBFace = love.graphics.newImage("img/player_b.png")
+	self.playerCFace = love.graphics.newImage("img/player_c.png")
+	self.playerDFace = love.graphics.newImage("img/player_d.png")
 end
 
 function gameModeStartClass:update(dt)
@@ -51,10 +51,10 @@ function gameModeStartClass:draw()
 	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
 	-- draw player panels
-	self:drawPlayerPanel(50, 50, self.playerAPane, self.playerAFace, self.playerAReady)
-	self:drawPlayerPanel(500, 50, self.playerBPane, self.playerBFace, self.playerBReady)
-	self:drawPlayerPanel(950, 50, self.playerCPane, self.playerCFace, self.playerCReady)
-	self:drawPlayerPanel(500, 400, self.playerDPane, self.playerDFace, self.playerDReady)
+	self:drawPlayerPanel(30, 230, self.playerAPane, self.playerAFace, self.playerAReady)
+	self:drawPlayerPanel(480, 230, self.playerBPane, self.playerBFace, self.playerBReady)
+	self:drawPlayerPanel(930, 230, self.playerCPane, self.playerCFace, self.playerCReady)
+	self:drawPlayerPanel(480, 500, self.playerDPane, self.playerDFace, self.playerDReady)
 	
 	-- draw counter
 	if self.counterCurrent > 0 then
@@ -86,33 +86,21 @@ function gameModeStartClass.keyreleased(key)
 end
 
 function gameModeStartClass:mousepressed(x, y, button)
-end
-
-function gameModeStartClass:mousereleased(x, y, button)
 	self.playerDReady = true
 end
 
+function gameModeStartClass:mousereleased(x, y, button)
+end
+
 function gameModeStartClass:drawPlayerPanel(x, y, panelImage, faceImage, ifReady)
-	-- draw panels
-	love.graphics.draw(panelImage, x, y, 0, 1, 1, 0, 0)
-	
-	-- draw faces
-	love.graphics.draw(faceImage, x+150, y+100, 0, 1, 1, 0, 0)
-	
-	-- save current color
-	local r, g, b, a = love.graphics.getColor( )
-	
+
 	-- draw texts
 	if ifReady then
-		love.graphics.setColor(255, 0, 0, 255)
-		love.graphics.print("READY!", x+220, y+190, 0, 2, 2)
-	else
-		love.graphics.setColor(0, 255, 0, 255)
-		love.graphics.print("HIT A KEY!", x+220, y+190, 0, 2, 2)
+		love.graphics.draw(faceImage, x+150, y-200, 0, 0.8, 0.8)
 	end
-	
-	 -- restore colors
-	love.graphics.setColor(r,g,b,a)
+		
+	-- draw panels
+	love.graphics.draw(panelImage, x, y, 0, 1, 1, 0, 0)
 end
 
 return gameModeStartClass
