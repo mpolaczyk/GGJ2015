@@ -1,6 +1,7 @@
 -- game_mode_run.lua
 
 local tileMapClass = require "tilemap"
+local physicsClass = require "physics"
 
 local gameModeRunClass = {}
 gameModeRunClass.__index = gameModeRunClass
@@ -9,16 +10,16 @@ function gameModeRunClass.new(gameState)
   local self = setmetatable({}, gameModeRunClass)
   self.moduleName = "gameModeRunClass"
   self.gameState = gameState
-  self.tileMap = tileMapClass.new({x = 220, y = 0})
   return self
 end
 
 function gameModeRunClass:load()
-
+   physicsClass.init()
+   self.tileMap = tileMapClass.new({x = 220, y = 0})
 end
 
 function gameModeRunClass:update(dt)
-    
+   physicsClass.update(dt)
 end
 
 function gameModeRunClass:draw()
