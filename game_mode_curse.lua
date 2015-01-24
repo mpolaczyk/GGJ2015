@@ -33,9 +33,9 @@ function gameModeCurseClass:draw()
 	--love.graphics.draw(self.gameState.caughtPlayer.avatar, x, y)
 	
 	-- title
-	common.drawText("h1", "One of your companions was caught !", 0, 20, 1366, "center", "black")
-	common.drawText("h2", "What do you do now ?", 0, 90, 1366, "center", "black")
-	common.drawText("h2", "Choose an option for ONE of you !", 0, 160, 1366, "center", "black")
+	common.drawText("h2", "One of your companions was caught !", 0, 20, 1366, "center", "black")
+	common.drawText("h4", "What do you do now ?", 0, 90, 1366, "center", "black")
+	common.drawText("h4", "Choose an option for ONE of you !", 0, 160, 1366, "center", "black")
 	
 	-- faces
 	love.graphics.draw(self.playerAFace, 50, 200, 0, 0.5, 0.5)
@@ -43,12 +43,12 @@ function gameModeCurseClass:draw()
 	love.graphics.draw(self.playerCFace, 50, 540, 0, 0.5, 0.5)
 	
 	-- curses
-	common.drawText("h2", self.gameState.nextCurseA, 200, 250, 1066, "left", "black")
-	common.drawText("h2", self.gameState.nextCurseB, 200, 420, 1066, "left", "black")
-	common.drawText("h2", self.gameState.nextCurseC, 200, 590, 1066, "left", "black")
+	common.drawText("h4", self.gameState.nextCurseA, 200, 250, 1066, "left", "black")
+	common.drawText("h4", self.gameState.nextCurseB, 200, 420, 1066, "left", "black")
+	common.drawText("h4", self.gameState.nextCurseC, 200, 590, 1066, "left", "black")
 	
 	-- draw enter button
-	common.drawText("h2", "Continue...", 0, 590, 1340, "right", "black")
+	common.drawText("h4", "Continue...", 0, 590, 1340, "right", "black")
 	love.graphics.draw(self.enterImage, 1200, 650, 0, 0.5, 0.5)
 end
 
