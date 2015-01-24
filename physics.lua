@@ -28,20 +28,32 @@ function physicsClass.new(pos, size, userData, kind)
    self.body:setPosition(pos.x, pos.y)
    if userData then
       self.fixture:setUserData(userData)
-   end
+   end 
    return self
 end
 
-function beginContact()
+function beginContact(a, b, coll)
+   if coll:isTouching() then
+      aobj = a:getUserData()
+      bobj = b:getUserData()
+      aobj:onCollision(bobj)
+      bobj:onCollision(aobj)
+   end
 end
 
-function endContact()
+function endContact(a, b, coll)
 end
 
-function preSolve()
+function preSolve(a, b, coll)
 end
 
-function postSolve()
+function postSolve(a, 
+		   b, 
+		   coll, 
+		   normalimpulse1, 
+		   tangentimpulse1, 
+		   normalimpulse2, 
+		   tangentimpulse2)
 end
 
 return physicsClass

@@ -1,28 +1,25 @@
--- player.lua
+-- coin.lua
 
 local physicsClass = require "physics"
 
-local playerClass = {}
-playerClass.__index = playerClass
+local coinClass = {}
+coinClass.__index = coinClass
 
-function playerClass.new(avatarPath, pos, size, name)
-  local self = setmetatable({}, playerClass)
-  self.sprite = love.graphics.newImage(avatarPath)
+function coinClass.new(pos, size)
+  local self = setmetatable({}, coinClass)
+  self.sprite = love.graphics.newImage("img/coin.png")
   self.size = size
-  self.name = name
   local hitbox_size = {width = self.size.width*0.5,
 		       height = self.size.width*0.5}
   self.physics = physicsClass.new(pos,
 				  hitbox_size, 
-				  self,
-				  "dynamic")
+				  "Coin")
   self.physics.body:setFixedRotation(true)
   self.score = 0
   return self
 end
 
-function playerClass:draw()
-   local x, y = self.physics.body:getPosition()
+function coinClass:draw()
    local scale = {self.size.width/self.sprite:getWidth(),
 		  self.size.height/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
@@ -35,12 +32,8 @@ function playerClass:draw()
 		      nil)
 end
 
-function playerClass:onCollision(other)
-   if (other.name) then
-      if (other.name == "BadGuy") then
-	 print("Ooops, bad guy cought someone!")
-      end
-   end
+function coinClass:onCollision()
+   print("Coin collided with something!")
 end
 
-return playerClass
+return coinClass
