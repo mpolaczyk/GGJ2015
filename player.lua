@@ -5,7 +5,11 @@ local physicsClass = require "physics"
 local playerClass = {}
 playerClass.__index = playerClass
 
-function playerClass.new(avatarPath, pos, size, name)
+function playerClass.new(avatarPath, 
+			 pos, 
+			 size, 
+			 name,
+			 gameState)
   local self = setmetatable({}, playerClass)
   self.sprite = love.graphics.newImage(avatarPath)
   self.size = size
@@ -18,6 +22,7 @@ function playerClass.new(avatarPath, pos, size, name)
 				  "dynamic")
   self.physics.body:setFixedRotation(true)
   self.score = 0
+  self.gameState = gameState
   return self
 end
 
@@ -38,7 +43,7 @@ end
 function playerClass:onCollision(other)
    if (other.name) then
       if (other.name == "BadGuy") then
-	 print("Ooops, bad guy cought someone!")
+	 self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
       end
    end
 end
