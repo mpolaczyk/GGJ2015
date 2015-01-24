@@ -3,6 +3,7 @@
 local gameModeStartClass = {}
 gameModeStartClass.__index = gameModeStartClass
 
+local common = require "common"
 
 function gameModeStartClass.new(gameState)
 	local self = setmetatable({}, gameModeStartClass)
@@ -58,16 +59,12 @@ function gameModeStartClass:draw()
 	
 	-- draw counter
 	if self.counterCurrent > 0 then
-	   love.graphics.setNewFont(220)
-	   love.graphics.setColor(255, 0, 0)
-	   local val = math.floor(self.counterMax - self.counterCurrent)
-	   if (val > 0) then
-	      love.graphics.printf(val, 0, 275, 1366, 'center')
-	   else
-	      love.graphics.printf("START", 0, 275, 1366, 'center')
-	   end
-	   love.graphics.setColor(255, 255, 255)
-	   love.graphics.setNewFont(12)
+		local val = math.floor(self.counterMax - self.counterCurrent)
+		if (val > 0) then
+			common.drawText("h0", val, 0, 275, 1366, "center", "red")
+		else
+			common.drawText("h0", "START", 0, 275, 1366, "center", "red")
+		end
 	end
 end
 
