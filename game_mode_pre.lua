@@ -47,8 +47,11 @@ end
 
 function gameModePreClass:keypressed(key)
 	if key == "return" then
-		self.gameState:callGameModeAction(self.gameState.actionEnter)
+		self.gameState:callGameModeAction(self.gameState.actionRules)
 	end
+end
+
+function gameModePreClass.keyreleased(key)
 end
 
 function gameModePreClass:mousepressed(x, y, button)

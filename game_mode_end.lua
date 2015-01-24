@@ -50,6 +50,9 @@ end
 function gameModeEndClass:keypressed(key)
 end
 
+function gameModeEndClass.keyreleased(key)
+end
+
 function gameModeEndClass:mousepressed(x, y, button)
 end
 

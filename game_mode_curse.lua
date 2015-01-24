@@ -39,13 +39,19 @@ function gameModeCurseClass:draw()
 	--love.graphics.draw(self.gameState.caughtPlayer.avatar, x, y, 0, 1, 1, 0, 0)
 	
 	-- temp until assets arrive
-    love.graphics.print("This is your curse", 10, 10)
+    love.graphics.print("Select your curse", 10, 10)
+	love.graphics.print("1 " .. self.gameState.nextCurseA, 10, 50)
+	love.graphics.print("2 " .. self.gameState.nextCurseB, 10, 70)
+	love.graphics.print("3 " .. self.gameState.nextCurseC, 10, 90)
 end
 
 function gameModeCurseClass:keypressed(key)
 	if key == "1" or key == "2" or key == "3" then
 		self.gameState:callGameModeAction(self.gameState.actionCurseResult)
 	end
+end
+
+function gameModeCurseClass.keyreleased(key)
 end
 
 function gameModeCurseClass:mousepressed(x, y, button)
