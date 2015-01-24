@@ -21,7 +21,7 @@ function gameModeCurseClass:update(dt)
 end
 
 function gameModeCurseClass:draw()
-    love.graphics.draw(common.backgroundCloudImage, x, y, 0, 1, 1, 0, 0)
+    love.graphics.draw(common.backgroundCurseImage, x, y, 0, 1, 1, 0, 0)
 	
 	-- title
 	common.drawText("h2", "One of your companions was caught !", 0, 20, 1366, "center", "black")
