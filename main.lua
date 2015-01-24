@@ -26,7 +26,11 @@ end
 
 function love.keypressed(key)
 	-- push execution to current game mode
-	GS.currentGameMode:keypressed(key)
+	if key == "escape" then
+		love.event.quit()
+	else
+		GS.currentGameMode:keypressed(key)
+	end
 end
 
 function love.keyreleased(key)
