@@ -114,7 +114,7 @@ function gameModeRunClass:handleMouseInput()
    local lastX = self.lastMousePos.x
    local lastY = self.lastMousePos.y
    local currX, currY = love.mouse.getPosition()
-   local tolerance = 75
+   local tolerance = 20
    if lastX + tolerance < currX then
       self.gameState.player4.physics.body:setLinearVelocity(playerSpeed, 0)
    elseif lastX > currX + tolerance then
