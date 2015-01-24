@@ -40,29 +40,60 @@ function gameStateClass.new()
 	-- caught player for curse
 	self.caughtPlayer = nil
 	
+	-- generate curses
+	self.curses = {
+		"Curse 1",
+		"Curse 2",
+		"Curse 3",
+		"Curse 4",
+		"Curse 5",
+		"Curse 6",
+		"Curse 7",
+		"Curse 8",
+		"Curse 9",
+		"Curse 10"
+	}
+	self.nextCurseA = nil
+	self.nextCurseB = nil
+	self.nextCurseC = nil
+	
 	-- starting point
 	self.currentGameMode = self.GM_Pre
 	
 	return self
 end
 
-
 function gameStateClass:callGameModeAction(actionName)
 	-- FSM transitions
 	
 	if actionName == self.actionAllReady and self.currentGameMode == self.GM_Start then
 		self.currentGameMode = self.GM_Run
+		
 	elseif actionName == self.actionPlayerWin and self.currentGameMode == self.GM_Run then
 		self.currentGameMode = self.GM_End
+		
 	elseif actionName == self.actionBadGuyContact and self.currentGameMode == self.GM_Run then
+		-- set new random curses and change mode
+		self.nextCurseA = self:getRandomCurse()
+		self.nextCurseB = self:getRandomCurse()
+		self.nextCurseC = self:getRandomCurse()
 		self.currentGameMode = self.GM_Curse
+		
 	elseif actionName == self.actionCurseResult and self.currentGameMode == self.GM_Curse then
 		self.currentGameMode = self.GM_Run
-	elseif actionName == self.actionEnter and self.currentGameMOde == self.GM_PRE then
+		
+	elseif actionName == self.actionEnter and self.currentGameMode == self.GM_PRE then
 		self.currentGameMode = self.GM_Start
+		
 	else
 		error("invalid game state transition")
 	end
 end
+
+
+function gameStateClass:getRandomCurse()
+	return self.curses[math.random(1, table.getn(self.curses))]
+end
+
 
 return gameStateClass

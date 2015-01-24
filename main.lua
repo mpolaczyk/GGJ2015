@@ -6,6 +6,10 @@ GS = nil
 function love.load()
 	GS = gs.new()
 	love.window.setMode(1366, 768)
+	
+	-- init random seed
+	math.randomseed( os.time() )
+	math.random(); math.random(); math.random()
 end
 
 
