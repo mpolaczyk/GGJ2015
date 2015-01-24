@@ -2,10 +2,10 @@
 local commonClass = {}
 
 -- fonts
-h1Font = love.graphics.newFont("font/Amburegul.ttf", 54)
-h2Font = love.graphics.newFont("font/Amburegul.ttf", 44)
-h3Font = love.graphics.newFont("font/Amburegul.ttf", 34)
-h4Font = love.graphics.newFont("font/Amburegul.ttf", 24)
+h1Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 54)
+h2Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 44)
+h3Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 34)
+h4Font = love.graphics.newFont("font/Cardenio Modern Std.ttf", 24)
 
 
 function commonClass.drawText(style, text, x, y, limit, align, color)
