@@ -4,14 +4,11 @@ local pathTileClass = require "path_tile"
 local wallTileClass = require "wall_tile"
 
 local tilemapClass = {}
-local tileDimension = 22
 tilemapClass.__index = tilemapClass
 
 -- 0 - wall, 1 - path
 local numRows = 34
 local numCols = 40
-tilemapClass.width = numCols*tileDimension
-tilemapClass.height = numRows*tileDimension
 local tilemapPattern = 
 {
  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
@@ -50,22 +47,22 @@ local tilemapPattern =
  {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
 }
 
-function tilemapClass.new(pos)
+function tilemapClass.new(pos, dim)
    local self = setmetatable({}, tilemapClass)
 
    self.tiles = {}
    for i=1,numRows,1 do
       local row = {}
       for j=1,numCols,1 do
- 	 local position = {x = (j-1)*tileDimension + pos.x + tileDimension,
-			   y = (i-1)*tileDimension + pos.y + tileDimension}
+ 	 local position = {x = (j-1)*dim + pos.x + dim,
+			   y = (i-1)*dim + pos.y + dim}
 	 if tilemapPattern[i][j] == 0 then
 	    table.insert(row, pathTileClass.new(position,
-						tileDimension))
+						dim))
 	 end
 	 if tilemapPattern[i][j] == 1 then
 	    table.insert(row, wallTileClass.new(position,
-						tileDimension))
+						dim))
 	 end
       end
       table.insert(self.tiles, row)
