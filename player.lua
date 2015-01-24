@@ -13,6 +13,7 @@ function playerClass.new(avatarPath, pos, size)
 				  size, 
 				  "Player",
 				  "dynamic")
+  self.physics.body:setFixedRotation(true)
   self.score = 0
   return self
 end

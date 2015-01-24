@@ -55,8 +55,8 @@ function tilemapClass.new(pos, dim)
    for i=1,numRows,1 do
       local row = {}
       for j=1,numCols,1 do
- 	 local position = {x = (j-1)*dim + pos.x + dim,
-			   y = (i-1)*dim + pos.y + dim}
+ 	 local position = {x = (j-1)*dim + pos.x,
+			   y = (i-1)*dim + pos.y}
 	 if tilemapPattern[i][j] == 0 then
 	    table.insert(row, pathTileClass.new(position,
 						dim))
@@ -82,8 +82,8 @@ end
 -- returns position of upper left corner of given tile
 -- ranges starting from 1, lua style!
 function tilemapClass:getPos(tilex, tiley)
-   return {x = (tilex-1)*self.dim + self.pos.x + self.dim,
-	   y = (tiley-1)*self.dim + self.pos.y + self.dim}
+   return {x = (tilex-1)*self.dim + self.pos.x,
+	   y = (tiley-1)*self.dim + self.pos.y}
    
 end
 
