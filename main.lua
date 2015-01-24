@@ -1,15 +1,15 @@
 
 local gs = require "game_state"
 
+-- game state instance
 GS = nil
+
+-- init random seed
+math.randomseed( os.time() )
 
 function love.load()
    GS = gs.new()
    love.window.setMode(1366, 768, {fullscreen=true})
-	
-	-- init random seed
-	math.randomseed( os.time() )
-	math.random(); math.random(); math.random()
 end
 
 
@@ -26,7 +26,11 @@ end
 
 function love.keypressed(key)
 	-- push execution to current game mode
-	GS.currentGameMode:keypressed(key)
+	if key == "escape" then
+		love.event.quit()
+	else
+		GS.currentGameMode:keypressed(key)
+	end
 end
 
 function love.keyreleased(key)

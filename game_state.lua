@@ -67,19 +67,7 @@ function gameStateClass.new()
 	-- caught player for curse
 	self.caughtPlayer = nil
 	
-	-- generate curses
-	self.curses = {
-		"Curse 1",
-		"Curse 2",
-		"Curse 3",
-		"Curse 4",
-		"Curse 5",
-		"Curse 6",
-		"Curse 7",
-		"Curse 8",
-		"Curse 9",
-		"Curse 10"
-	}
+	-- curses state
 	self.nextCurseA = nil
 	self.nextCurseB = nil
 	self.nextCurseC = nil
@@ -122,9 +110,9 @@ function gameStateClass:callGameModeAction(actionName)
 		self.currentGameMode = self.GM_End
 	elseif self.currentGameMode == self.GM_Run and actionName == self.actionBadGuyContact then
 		-- goto curse
-		self.nextCurseA = self:getRandomCurse()
-		self.nextCurseB = self:getRandomCurse()
-		self.nextCurseC = self:getRandomCurse()
+		self.nextCurseA = common.getRandomCurse()
+		self.nextCurseB = common.getRandomCurse()
+		self.nextCurseC = common.getRandomCurse()
 		self.currentGameMode = self.GM_Curse
 	
 	-- Curse screen
@@ -135,11 +123,5 @@ function gameStateClass:callGameModeAction(actionName)
 		error("invalid game state transition")
 	end
 end
-
-
-function gameStateClass:getRandomCurse()
-	return self.curses[math.random(1, table.getn(self.curses))]
-end
-
 
 return gameStateClass
