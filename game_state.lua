@@ -9,6 +9,7 @@ local gmCurse = require "game_mode_curse"
 
 local common = require "common"
 
+local physicsClass = require "physics"
 local playerClass = require "player"
 local tileMapClass = require "tilemap"
 
@@ -24,7 +25,7 @@ function gameStateClass.new()
 	self.GM_Pre = gmPre.new(self)
 	self.GM_Rules = gmRules.new(self)
 	self.GM_Start = gmStart.new(self)
-	
+	physicsClass.init()
 	self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
 	self.GM_Run = gmRun.new(self, self.tileMap)
 	self.GM_End = gmEnd.new(self)
@@ -79,7 +80,7 @@ function gameStateClass.new()
 	self.nextCurseC = nil
 	
 	-- starting point
-	self.currentGameMode = self.GM_Run
+	self.currentGameMode = self.GM_Pre
 	
 	return self
 end
