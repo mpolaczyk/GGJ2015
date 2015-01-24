@@ -30,13 +30,14 @@ function gameModeRunClass:load()
    self.player4 = playerClass.new("img/evil.png", self.tileMap:getPos(4, 10),
 				  {width = tileSize*2, height = tileSize*2})
    self.isLMBPressed = false
-   self.lastMousePos = love.mouse.getPosition()
+   local x_, y_ = love.mouse.getPosition()
+   self.lastMousePos = {x = x_, y = y_}
 end
 
 function gameModeRunClass:update(dt)
    physicsClass.update(dt)
    if self.isLMBPressed then
-      handleMouseInput()
+      self:handleMouseInput()
    end
 end
 
@@ -103,13 +104,25 @@ function gameModeRunClass:mousereleased(x, y, button)
 end
 
 function gameModeRunClass:handleMouseInput()
-   local lastX, lastY = self.lastMousePos
+   local lastX = self.lastMousePos.x
+   local lastY = self.lastMousePos.y
    local currX, currY = love.mouse.getPosition()
-   local tolerance = 0
-   if lastX + tolerance < currX:
+   local tolerance = 75
+   if lastX + tolerance < currX then
+   -- left
+      self.player4.physics.body:setLinearVelocity(playerSpeed, 0)
+   elseif lastX > currX + tolerance then
    -- right
-   elseif lastX > currX:
-   elseif lastY < curr
+      self.player4.physics.body:setLinearVelocity(-playerSpeed, 0)
+   elseif lastY + tolerance < currY then
+   -- up
+      self.player4.physics.body:setLinearVelocity(0, playerSpeed)
+   elseif lastY > currY + tolerance then
+   -- down
+      self.player4.physics.body:setLinearVelocity(0, -playerSpeed)
+   end
+   self.lastMousePos.x = currX
+   self.lastMousePos.y = currY
 end
 
 return gameModeRunClass
