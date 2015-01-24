@@ -26,7 +26,7 @@ end
 
 function gameModeRulesClass:keypressed(key)
 	if key == "return" then
-		self.gameState:callGameModeAction(self.gameState.actionEnter)
+		self.gameState:callGameModeAction(self.gameState.actionStart)
 	end
 end
 

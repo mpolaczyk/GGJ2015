@@ -1,5 +1,7 @@
 -- player.lua
 
+local physicsClass = require "physics"
+
 local playerClass = {}
 playerClass.__index = playerClass
 
@@ -17,16 +19,16 @@ end
 
 function playerClass:draw()
    local x, y = self.physics.body:getPosition()
-   local scale = {self.size.x/self.sprite.getWidth(),
-		  self.size.y/self.sprite.getHeight()}
+   local scale = {self.size.width/self.sprite:getWidth(),
+		  self.size.height/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
 		      x, 
 		      y, 
 		      nil,
 		      scale[1],
 		      scale[2],
-		      self.size/2, 
-		      self.size/2)
+		      nil, 
+		      nil)
 end
 
 return playerClass
