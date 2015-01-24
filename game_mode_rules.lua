@@ -12,7 +12,7 @@ function gameModeRulesClass.new(gameState)
 end
 
 function gameModeRulesClass:load()
-
+	self.backgroundImage = love.graphics.newImage("img/bg.png")
 end
 
 function gameModeRulesClass:update(dt)
@@ -20,13 +20,14 @@ function gameModeRulesClass:update(dt)
 end
 
 function gameModeRulesClass:draw()
-
-    love.graphics.print("Ruels screen: Hit enter to continue!", 10, 10)
+	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
+	
+    love.graphics.print("Rules screen: Hit enter to continue!", 10, 10)
 end
 
 function gameModeRulesClass:keypressed(key)
 	if key == "return" then
-		self.gameState:callGameModeAction(self.gameState.actionEnter)
+		self.gameState:callGameModeAction(self.gameState.actionStart)
 	end
 end
 

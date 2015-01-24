@@ -12,7 +12,7 @@ function gameModeEndClass.new(gameState)
 end
 
 function gameModeEndClass:load()
-	--self.backgroundImage = love.graphics.newImage("img/wsad.png")
+	self.backgroundImage = love.graphics.newImage("img/bg.png")
 	
 	-- for victory
     --self.victoryImage = love.graphics.newImage("img/wsad.png")
@@ -31,7 +31,7 @@ end
 
 function gameModeEndClass:draw()
 	
-	love.graphics.draw(backgroundImage, x, y, 0, 1, 1, 0, 0)
+	love.graphics.draw(backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
 	--if self.gameState.playersVictory then
 		--love.graphics.draw(victoryImage, x, y, 0, 1, 1, 0, 0)
