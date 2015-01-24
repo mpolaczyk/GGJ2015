@@ -43,11 +43,13 @@ end
 function gameModeStartClass:draw()
 	love.graphics.draw(common.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
+	common.drawText("h2", "Gather Your Team", 0, 30, 1366, "center", "black")
+	
 	-- draw player panels
-	self:drawPlayerPanel(30, 230, common.wsadImage,  self.gameState.player1.image, self.playerAReady)
-	self:drawPlayerPanel(480, 230, common.uhjkImage, self.gameState.player2.image, self.playerBReady)
-	self:drawPlayerPanel(930, 230, common.arrowsImage, self.gameState.player3.image, self.playerCReady)
-	self:drawPlayerPanel(480, 500, common.mouseImage, self.gameState.player4.image, self.playerDReady)
+	self:drawPlayerPanel(30, 250, common.wsadImage,  self.gameState.player1.image, self.playerAReady, 40, 30)
+	self:drawPlayerPanel(480, 250, common.uhjkImage, self.gameState.player2.image, self.playerBReady, 40, 40)
+	self:drawPlayerPanel(930, 250, common.arrowsImage, self.gameState.player3.image, self.playerCReady, 40, 40)
+	self:drawPlayerPanel(400, 500, common.mouseImage, self.gameState.player4.image, self.playerDReady, 80, 150)
 	
 	-- draw counter
 	if self.counterCurrent > 0 then
@@ -81,11 +83,10 @@ end
 function gameModeStartClass:mousereleased(x, y, button)
 end
 
-function gameModeStartClass:drawPlayerPanel(x, y, panelImage, faceImage, ifReady)
-
+function gameModeStartClass:drawPlayerPanel(x, y, panelImage, faceImage, ifReady, x_offset, y_offset)
 	-- draw texts
 	if ifReady then
-		love.graphics.draw(faceImage, x+150, y-200, 0, 0.8, 0.8)
+		love.graphics.draw(faceImage, x+150+x_offset, y-200+y_offset, 0, 0.8, 0.8)
 	end
 		
 	-- draw panels

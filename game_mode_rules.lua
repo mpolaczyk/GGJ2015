@@ -33,7 +33,7 @@ function gameModeRulesClass:draw()
 	love.graphics.draw(self.gameState.player4.image, 780, 120, 0, 0.5, 0.5)
 	
 	-- players rules
-	common.drawText("h4", "Adventurers:", 50, 300, 1366, "left", "black")
+	common.drawText("h4", "The Crew:", 50, 300, 1366, "left", "black")
 	common.drawText("h5", "Move around the maze and collect 10 Coins of Power.", 70, 350, 1366, "left", "black")
 	
 	common.drawText("h5", "But be careful!", 70, 400, 1366, "left", "black")

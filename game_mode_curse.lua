@@ -39,7 +39,6 @@ function gameModeCurseClass:draw()
 	common.drawText("h4", self.gameState.nextCurseC, 200, 590, 1066, "left", "black")
 	
 	-- draw enter button
-	common.drawText("h4", "Continue...", 0, 590, 1340, "right", "black")
 	love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
 end
 
