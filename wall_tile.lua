@@ -21,8 +21,8 @@ function wallTileClass:draw()
    local x, y = self.physics.body:getPosition()
    scale = {self.dim/self.sprite:getWidth(), self.dim/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
-		      x, 
-		      y, 
+		      x + self.dim*0.5, 
+		      y + self.dim*0.5, 
 		      nil,
 		      scale[1],
 		      scale[2],
