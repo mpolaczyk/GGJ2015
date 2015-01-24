@@ -31,7 +31,7 @@ function gameModeRunClass:load()
 	self.playerDFace = love.graphics.newImage("img/player_d.png")
 	
 	-- coin
-	self.coinImage = love.graphics.newImage("img/coin.png")
+	self.coinImage = love.graphics.newImage("img/coin_ui.png")
 	
 	self.isLMBPressed = false
 	local x_, y_ = love.mouse.getPosition()
