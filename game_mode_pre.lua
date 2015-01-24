@@ -48,13 +48,13 @@ function gameModePreClass:draw()
 	-- logo
 	love.graphics.draw(self.titleImage, 160, 150)
 	
-	-- draw space button
-	common.drawText("h4", "Hit enter to continue...", 950, 500, 1366, "left", "black")
-	love.graphics.draw(self.enterImage, 1050, 600, 0, 0.5, 0.5)
+	-- draw enter button
+	common.drawText("h4", "To continue, hit:", 0, 590, 1366, "right", "black")
+	love.graphics.draw(self.enterImage, 1200, 650, 0, 0.5, 0.5)
 end
 
 function gameModePreClass:keypressed(key)
-	if key == "space" then
+	if key == "return" then
 		self.gameState:callGameModeAction(self.gameState.actionRules)
 	end
 end
