@@ -3,6 +3,7 @@
 local gameModePreClass = {}
 gameModePreClass.__index = gameModePreClass
 
+local common = require "common"
 
 function gameModePreClass.new(gameState)
   local self = setmetatable({}, gameModePreClass)
@@ -13,11 +14,9 @@ end
 
 function gameModePreClass:load()
 	self.backgroundImage = love.graphics.newImage("img/bg.png")
-    --self.eventLogo = love.graphics.newImage("img/wsad.png")
-	--self.titleLogo = love.graphics.newImage("img/wsad.png")
-	--self.teamImage = love.graphics.newImage("img/wsad.png")
-	--self.rulesImage = love.graphics.newImage("img/wsad.png")
-	--self.enterImage = love.graphics.newImage("img/wsad.png")
+	self.enterImage = love.graphics.newImage("img/enter.png")
+	self.titleImage = love.graphics.newImage("img/title.png")
+	
 end
 
 function gameModePreClass:update(dt)
@@ -26,27 +25,36 @@ end
 
 function gameModePreClass:draw()
 	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
-    -- draw event logo
-	--love.graphics.draw(self.eventImage, x, y, 0, 1, 1, 0, 0)
+    
+	-- event
+	common.drawText("h2", "GLOBAL GAME JAM 2015 - POZNAN - POLAND", 0, 20, 1366, "center", "black")
 	
-	-- draw title logo
-	--love.graphics.draw(self.titleImage, x, y, 0, 1, 1, 0, 0)
+	-- team
+	common.drawText("h4", "The Team:", 50, 400, 1366, "left", "black")
+	common.drawText("h4", "Joanna Wolska - Artist", 70, 450, 1366, "left", "black")
+	common.drawText("h4", "Kasia Drabarek - Artist", 70, 500, 1366, "left", "black")
+	common.drawText("h4", "Jacek Ciesla - Designer", 70, 550, 1366, "left", "black")
+	common.drawText("h4", "Andrzej Drabarek - Developer", 70, 600, 1366, "left", "black")
+	common.drawText("h4", "Marcin Polaczyk - Developer", 70, 650, 1366, "left", "black")
 	
-	-- draw team  texts
-	--love.graphics.draw(self.teamImage, x, y, 0, 1, 1, 0, 0)
+	-- tech specs
+	common.drawText("h4", "Tech specs:", 520, 400, 1366, "left", "black")
+	common.drawText("h4", "Framework - LOVE", 540, 450, 1366, "left", "black")
+	common.drawText("h4", "Language - LUA", 540, 500, 1366, "left", "black")
+	common.drawText("h4", "Graphics - Photoshop", 540, 550, 1366, "left", "black")
+	common.drawText("h4", "Sounds - freesounds.org", 540, 600, 1366, "left", "black")
+	common.drawText("h4", "Source control - GitHub", 540, 650, 1366, "left", "black")
 	
-	-- draw rules image
-	--love.graphics.draw(self.teamImage, x, y, 0, 1, 1, 0, 0)
+	-- logo
+	love.graphics.draw(self.titleImage, 160, 150)
 	
-	-- draw enter button
-	--love.graphics.draw(self.enterImage, x, y, 0, 1, 1, 0, 0)
-	
-	-- temp until assets arrive
-    love.graphics.print("Hit enter to continue!", 10, 10)
+	-- draw space button
+	common.drawText("h4", "Hit enter to continue...", 950, 500, 1366, "left", "black")
+	love.graphics.draw(self.enterImage, 1050, 600, 0, 0.5, 0.5)
 end
 
 function gameModePreClass:keypressed(key)
-	if key == "return" then
+	if key == "space" then
 		self.gameState:callGameModeAction(self.gameState.actionRules)
 	end
 end
