@@ -1,6 +1,7 @@
 -- game_state.lua
 
 local gmPre = require "game_mode_pre"
+local gmRules = require "game_mode_rules"
 local gmStart = require "game_mode_start"
 local gmRun = require "game_mode_run"
 local gmEnd = require "game_mode_end"
@@ -16,21 +17,24 @@ function gameStateClass.new()
 	
 	-- game modes and its activation
 	self.GM_Pre = gmPre.new(self)
+	self.GM_Rules = gmRules.new(self)
 	self.GM_Start = gmStart.new(self)
 	self.GM_Run = gmRun.new(self)
 	self.GM_End = gmEnd.new(self)
 	self.GM_Curse = gmCurse.new(self)
 	self.GM_Pre:load()
+	self.GM_Rules:load()
 	self.GM_Start:load()
 	self.GM_Run:load()
 	self.GM_End:load()
 	self.GM_Curse:load()
 
 	-- fsm transitions
-	self.actionEnter = "enter"
+	self.actionRules = "rules"
+	self.actionStart = "start"
 	self.actionAllReady = "all_ready"
 	self.actionCurseResult = "curse_result"
-	self.actionPlayerWin = "player_win"
+	self.actionEndGame = "endGame"
 	self.actionBadGuyContact = "bad_guy_contact"
 	
 	-- flags for end game 
@@ -66,24 +70,35 @@ end
 function gameStateClass:callGameModeAction(actionName)
 	-- FSM transitions
 	
-	if actionName == self.actionAllReady and self.currentGameMode == self.GM_Start then
+	-- Pre screen
+	if self.currentGameMode == self.GM_Pre  and actionName == self.actionRules then
+		-- goto rules
+		self.currentGameMode = self.GM_Rules
+	
+	-- Rules screen
+	elseif self.currentGameMode == self.GM_Rules  and actionName == self.actionStart then
+		-- goto start
+		self.currentGameMode = self.GM_Start
+		
+	-- Start screen
+	elseif self.currentGameMode == self.GM_Start and actionName == self.actionAllReady then
+		-- goto run
 		self.currentGameMode = self.GM_Run
-		
-	elseif actionName == self.actionPlayerWin and self.currentGameMode == self.GM_Run then
+	
+	-- Run screen
+	elseif self.currentGameMode == self.GM_Run and actionName == self.actionEndGame then
+		-- goto end
 		self.currentGameMode = self.GM_End
-		
-	elseif actionName == self.actionBadGuyContact and self.currentGameMode == self.GM_Run then
-		-- set new random curses and change mode
+	elseif self.currentGameMode == self.GM_Run and actionName == self.actionBadGuyContact then
+		-- goto curse
 		self.nextCurseA = self:getRandomCurse()
 		self.nextCurseB = self:getRandomCurse()
 		self.nextCurseC = self:getRandomCurse()
 		self.currentGameMode = self.GM_Curse
-		
-	elseif actionName == self.actionCurseResult and self.currentGameMode == self.GM_Curse then
+	
+	-- Curse screen
+	elseif self.currentGameMode == self.GM_Curse and actionName == self.actionCurseResult then
 		self.currentGameMode = self.GM_Run
-		
-	elseif actionName == self.actionEnter and self.currentGameMode == self.GM_Pre then
-		self.currentGameMode = self.GM_Start
 		
 	else
 		error("invalid game state transition")

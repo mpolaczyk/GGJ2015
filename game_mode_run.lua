@@ -28,7 +28,7 @@ end
 
 function gameModeRunClass:keypressed(key)
 	if key == "4" then
-		self.gameState:callGameModeAction(self.gameState.actionPlayerWin)
+		self.gameState:callGameModeAction(self.gameState.actionEndGame)
 	elseif key == "2" then
 		self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
 	end
