@@ -15,7 +15,7 @@ function gameModeStartClass.new(gameState)
 	self.playerDReady = false
   
 	self.counterDigit = 3;
-	self.counterMaxMs = 3.0;
+	self.counterMax = 4.0;
 	self.counterCurrent = 0.0;
   
 	return self
@@ -35,13 +35,13 @@ end
 function gameModeStartClass:update(dt)
     
 	-- check if game mode done
-	if self.playerAReady and self.playerBReady and self.playerCReady then
+	if self.playerAReady and self.playerBReady and self.playerCReady and self.playerDReady then
 	   self.counterCurrent = self.counterCurrent + dt
 	end
 	
 	-- change game mode
-	if self.counterCurrent >= self.counterMaxMs then
-		self.gameState:callGameModeAction(self.gameState.actionAllReady)
+	if self.counterCurrent >= self.counterMax then
+	   self.gameState:callGameModeAction(self.gameState.actionAllReady)
 	end
 end
 
@@ -55,9 +55,18 @@ function gameModeStartClass:draw()
 	self:drawPlayerPanel(500, 400, self.playerDPane, self.playerDFace, self.playerDReady)
 	
 	-- draw counter
-	--if self.counterCurrent > 0 then
-		
-	--end
+	if self.counterCurrent > 0 then
+	   love.graphics.setNewFont(220)
+	   love.graphics.setColor(255, 0, 0)
+	   local val = math.floor(self.counterMax - self.counterCurrent)
+	   if (val > 0) then
+	      love.graphics.printf(val, 0, 275, 1366, 'center')
+	   else
+	      love.graphics.printf("START", 0, 275, 1366, 'center')
+	   end
+	   love.graphics.setColor(255, 255, 255)
+	   love.graphics.setNewFont(12)
+	end
 end
 
 function gameModeStartClass:keypressed(key)
