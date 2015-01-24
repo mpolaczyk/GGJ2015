@@ -62,7 +62,10 @@ function gameStateClass.new()
 	self.nextCurseC = nil
 	
 	-- starting point
-	self.currentGameMode = self.GM_Pre
+	self.nextCurseA = self:getRandomCurse()
+	self.nextCurseB = self:getRandomCurse()
+	self.nextCurseC = self:getRandomCurse()
+	self.currentGameMode = self.GM_Curse
 	
 	return self
 end
