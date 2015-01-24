@@ -47,10 +47,17 @@ function playerClass:onCollision(other)
       if (other.name == "BadGuy") then
 	 self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
       elseif other.name == "Coin" then
-	 self.score = self.score + 1
-	 self.gameState.coinsToSpawn = self.gameState.coinsToSpawn - 1
+	 if self.name ~= "BadGuy" then
+	    self.score = self.score + 1
+	 end
+	 self.gameState.currentGameMode:removeCoin(other)
+	 self.gameState.coinsToSpawn = self.gameState.coinsToSpawn + 1
       end
    end
+end
+
+function playerClass:destroy()
+   self.physics.body:destroy()
 end
 
 return playerClass

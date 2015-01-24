@@ -34,6 +34,7 @@ function gameModeRunClass:update(dt)
    physicsClass.update(dt)
 
    for i=1,self.gameState.coinsToSpawn do
+      print("Spawning new coin.")
       self:spawnNewCoin()
    end
    self.gameState.coinsToSpawn = 0
@@ -45,20 +46,7 @@ end
 
 function gameModeRunClass:draw()
 	love.graphics.draw(common.backgroundMapImage, 0, 0, 0, 1, 1, 0, 0)
-	
-	-- draw game
-	self.tileMap:draw()
-	self.gameState.player1:draw()
-	self.gameState.player2:draw()
-	self.gameState.player3:draw()
-	self.gameState.player4:draw()
 
-	for i=1,self.maxCoins do
-	   if self.coins[i] then
-	      self.coins[i]:draw()
-	   end
-	end
-	
 	-- draw left panel
 	common.drawText("h1", "Players", 20, 30, 1346, "left", "black")
 	love.graphics.draw(self.gameState.player1.image, 70, 120, 0, 0.5, 0.5)
@@ -72,6 +60,21 @@ function gameModeRunClass:draw()
 	love.graphics.draw(self.gameState.player4.image, 1200, 120, 0, 0.5, 0.5)
 	common.drawText("h1", self.gameState:getBadGuyScore(), 1200, 600, 1346, "left", "black")
 	love.graphics.draw(common.curseUIImage, 1200, 670, 0, 0.4, 0.4)
+
+	self.tileMap:draw()
+
+	-- draw coins
+	for i=1,self.maxCoins do
+	   if self.coins[i] then
+	      self.coins[i]:draw()
+	   end
+	end
+
+	-- draw game
+	self.gameState.player1:draw()
+	self.gameState.player2:draw()
+	self.gameState.player3:draw()
+	self.gameState.player4:draw()
 end
 
 function gameModeRunClass:keypressed(key)
@@ -153,6 +156,7 @@ function gameModeRunClass:spawnNewCoin()
       if self.coins[i] == nil then
 	 print("Coin spawned at pos " .. pos.x .. ", " .. pos.y)
 	 self.coins[i] = newCoin
+	 break
       end
    end
 end
@@ -160,6 +164,7 @@ end
 function gameModeRunClass:removeCoin(coin)
    for i=1,#self.coins do
       if self.coins[i] == coin then
+	 self.coins[i]:destroy()
 	 self.coins[i] = nil
 	 print("Coin removed.")
       end

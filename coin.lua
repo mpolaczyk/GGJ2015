@@ -34,6 +34,10 @@ function coinClass:draw()
 		      nil)
 end
 
+function coinClass:destroy()
+   self.physics.body:destroy()
+end
+
 function coinClass:onCollision()
    print("Coin collided with something!")
 end
