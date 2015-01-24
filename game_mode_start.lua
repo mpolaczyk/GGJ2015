@@ -14,9 +14,9 @@ function gameModeStartClass.new(gameState)
 	self.playerCReady = false
 	self.playerDReady = false
   
-	self.counterStartTimeStamp = 0
 	self.counterDigit = 3;
-	self.counterMaxMs = 3000;
+	self.counterMaxMs = 3.0;
+	self.counterCurrent = 0.0;
   
 	return self
 end
@@ -36,16 +36,11 @@ function gameModeStartClass:update(dt)
     
 	-- check if game mode done
 	if self.playerAReady and self.playerBReady and self.playerCReady then
-		if self.counterStartTimeStamp == 0 then
-			-- save moment when players are ready
-			self.counterStartTimeStamp = love.timer.getTime( )
-		else
-			
-		end
+	   self.counterCurrent = self.counterCurrent + dt
 	end
 	
 	-- change game mode
-	if self.counterStartTimeStamp == self.counterMaxMs then
+	if self.counterCurrent >= self.counterMaxMs then
 		self.gameState:callGameModeAction(self.gameState.actionAllReady)
 	end
 end
@@ -60,9 +55,9 @@ function gameModeStartClass:draw()
 	self:drawPlayerPanel(500, 400, self.playerDPane, self.playerDFace, self.playerDReady)
 	
 	-- draw counter
-	if self.counterStartTimeStamp > 0 then
+	--if self.counterCurrent > 0 then
 		
-	end
+	--end
 end
 
 function gameModeStartClass:keypressed(key)
