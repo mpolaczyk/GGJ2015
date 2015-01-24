@@ -3,35 +3,39 @@
 local gameModeRunClass = {}
 gameModeRunClass.__index = gameModeRunClass
 
-local tileMapClass = require "tilemap"
+local common = require "common"
 local physicsClass = require "physics"
 local playerClass = require "player"
-local tileSize = 22
 local playerSpeed = 100
 
 local wallTileClass = require "wall_tile"
 
-function gameModeRunClass.new(gameState)
+function gameModeRunClass.new(gameState, tileMap)
   local self = setmetatable({}, gameModeRunClass)
   self.moduleName = "gameModeRunClass"
   self.gameState = gameState
+  self.tileMap = tileMap
   return self
 end
 
 function gameModeRunClass:load()
-   physicsClass.init()
-   self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
-   self.player1 = playerClass.new("img/blue.png", self.tileMap:getPos(4, 4),
-				  {width = tileSize*2, height = tileSize*2})
-   self.player2 = playerClass.new("img/red.png", self.tileMap:getPos(4, 6),
-				  {width = tileSize*2, height = tileSize*2})
-   self.player3 = playerClass.new("img/yellow.png", self.tileMap:getPos(4, 8),
-				  {width = tileSize*2, height = tileSize*2})
-   self.player4 = playerClass.new("img/evil.png", self.tileMap:getPos(4, 10),
-				  {width = tileSize*2, height = tileSize*2})
-   self.isLMBPressed = false
-   local x_, y_ = love.mouse.getPosition()
-   self.lastMousePos = {x = x_, y = y_}
+	
+	self.backgroundImage = love.graphics.newImage("img/bg_map.png")
+	
+	-- players 
+    self.playerAFace = love.graphics.newImage("img/player_a.png")
+	self.playerBFace = love.graphics.newImage("img/player_b.png")
+	self.playerCFace = love.graphics.newImage("img/player_c.png")
+	
+	-- bad guy
+	self.playerDFace = love.graphics.newImage("img/player_d.png")
+	
+	-- coin
+	self.coinImage = love.graphics.newImage("img/coin.png")
+	
+	self.isLMBPressed = false
+	local x_, y_ = love.mouse.getPosition()
+	self.lastMousePos = {x = x_, y = y_}
 end
 
 function gameModeRunClass:update(dt)
@@ -42,11 +46,28 @@ function gameModeRunClass:update(dt)
 end
 
 function gameModeRunClass:draw()
-   self.tileMap:draw()
-   self.player1:draw()
-   self.player2:draw()
-   self.player3:draw()
-   self.player4:draw()
+	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
+	
+	-- draw game
+	self.tileMap:draw()
+	self.gameState.player1:draw()
+	self.gameState.player2:draw()
+	self.gameState.player3:draw()
+	self.gameState.player4:draw()
+	
+	-- draw left panel
+	common.drawText("h1", "Players", 20, 30, 1346, "left", "black")
+	love.graphics.draw(self.playerAFace, 70, 120, 0, 0.5, 0.5)
+	love.graphics.draw(self.playerBFace, 70, 260, 0, 0.5, 0.5)
+	love.graphics.draw(self.playerCFace, 70, 380, 0, 0.5, 0.5)
+	common.drawText("h1", self.gameState:getPlayersScore(), 70, 600, 1346, "left", "black")
+	love.graphics.draw(self.coinImage, 70, 700, 0, 0.5, 0.5)
+	
+	-- draw right panel
+	common.drawText("h1", "Bad Guy", 20, 30, 1326, "right", "black")
+	love.graphics.draw(self.playerDFace, 1200, 120, 0, 0.5, 0.5)
+	common.drawText("h1", self.gameState:getBadGuyScore(), 1200, 600, 1346, "left", "black")
+	
 end
 
 function gameModeRunClass:keypressed(key)
@@ -60,35 +81,35 @@ function gameModeRunClass:keypressed(key)
 
    -- Player 1
    if key == "w" then
-      self.player1.physics.body:setLinearVelocity(0, -playerSpeed)
+      self.gameState.player1.physics.body:setLinearVelocity(0, -playerSpeed)
    elseif key == "a" then
-      self.player1.physics.body:setLinearVelocity(-playerSpeed, 0)
+      self.gameState.player1.physics.body:setLinearVelocity(-playerSpeed, 0)
    elseif key == "s" then
-      self.player1.physics.body:setLinearVelocity(0, playerSpeed)
+      self.gameState.player1.physics.body:setLinearVelocity(0, playerSpeed)
    elseif key == "d" then
-      self.player1.physics.body:setLinearVelocity(playerSpeed, 0)
+      self.gameState.player1.physics.body:setLinearVelocity(playerSpeed, 0)
    end
    
    -- Player 2
    if key == "u" then
-      self.player2.physics.body:setLinearVelocity(0, -playerSpeed)
+      self.gameState.player2.physics.body:setLinearVelocity(0, -playerSpeed)
    elseif key == "h" then
-      self.player2.physics.body:setLinearVelocity(-playerSpeed, 0)
+      self.gameState.player2.physics.body:setLinearVelocity(-playerSpeed, 0)
    elseif key == "j" then
-      self.player2.physics.body:setLinearVelocity(0, playerSpeed)
+      self.gameState.player2.physics.body:setLinearVelocity(0, playerSpeed)
    elseif key == "k" then
-      self.player2.physics.body:setLinearVelocity(playerSpeed, 0)
+      self.gameState.player2.physics.body:setLinearVelocity(playerSpeed, 0)
    end
    
    -- Player 3
    if key == "up" then
-      self.player3.physics.body:setLinearVelocity(0, -playerSpeed)
+      self.gameState.player3.physics.body:setLinearVelocity(0, -playerSpeed)
    elseif key == "left" then
-      self.player3.physics.body:setLinearVelocity(-playerSpeed, 0)
+      self.gameState.player3.physics.body:setLinearVelocity(-playerSpeed, 0)
    elseif key == "down" then
-      self.player3.physics.body:setLinearVelocity(0, playerSpeed)
+      self.gameState.player3.physics.body:setLinearVelocity(0, playerSpeed)
    elseif key == "right" then
-      self.player3.physics.body:setLinearVelocity(playerSpeed, 0)
+      self.gameState.player3.physics.body:setLinearVelocity(playerSpeed, 0)
    end
 end
 
@@ -109,13 +130,13 @@ function gameModeRunClass:handleMouseInput()
    local currX, currY = love.mouse.getPosition()
    local tolerance = 75
    if lastX + tolerance < currX then
-      self.player4.physics.body:setLinearVelocity(playerSpeed, 0)
+      self.gameState.player4.physics.body:setLinearVelocity(playerSpeed, 0)
    elseif lastX > currX + tolerance then
-      self.player4.physics.body:setLinearVelocity(-playerSpeed, 0)
+      self.gameState.player4.physics.body:setLinearVelocity(-playerSpeed, 0)
    elseif lastY + tolerance < currY then
-      self.player4.physics.body:setLinearVelocity(0, playerSpeed)
+      self.gameState.player4.physics.body:setLinearVelocity(0, playerSpeed)
    elseif lastY > currY + tolerance then
-      self.player4.physics.body:setLinearVelocity(0, -playerSpeed)
+      self.gameState.player4.physics.body:setLinearVelocity(0, -playerSpeed)
    end
    self.lastMousePos.x = currX
    self.lastMousePos.y = currY

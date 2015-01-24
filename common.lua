@@ -8,6 +8,8 @@ h2Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 64)
 h3Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 54)
 h4Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 44)
 
+-- map
+commonClass.tileSize = 22
 
 function commonClass.drawText(style, text, x, y, limit, align, color)
 	--save current

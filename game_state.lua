@@ -7,6 +7,11 @@ local gmRun = require "game_mode_run"
 local gmEnd = require "game_mode_end"
 local gmCurse = require "game_mode_curse"
 
+local common = require "common"
+
+local playerClass = require "player"
+local tileMapClass = require "tilemap"
+
 local gameStateClass = {}
 gameStateClass.__index = gameStateClass
 
@@ -19,7 +24,9 @@ function gameStateClass.new()
 	self.GM_Pre = gmPre.new(self)
 	self.GM_Rules = gmRules.new(self)
 	self.GM_Start = gmStart.new(self)
-	self.GM_Run = gmRun.new(self)
+	
+	self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
+	self.GM_Run = gmRun.new(self, self.tileMap)
 	self.GM_End = gmEnd.new(self)
 	self.GM_Curse = gmCurse.new(self)
 	self.GM_Pre:load()
@@ -29,6 +36,16 @@ function gameStateClass.new()
 	self.GM_End:load()
 	self.GM_Curse:load()
 
+	-- players for Run modes
+	self.player1 = playerClass.new("img/blue.png", self.tileMap:getPos(4, 4),
+				  {width = common.tileSize*2, height = common.tileSize*2})
+	self.player2 = playerClass.new("img/red.png", self.tileMap:getPos(4, 6),
+				  {width = common.tileSize*2, height = common.tileSize*2})
+	self.player3 = playerClass.new("img/yellow.png", self.tileMap:getPos(4, 8),
+				  {width = common.tileSize*2, height = common.tileSize*2})
+	self.player4 = playerClass.new("img/evil.png", self.tileMap:getPos(4, 10),
+				  {width = common.tileSize*2, height = common.tileSize*2})
+	
 	-- fsm transitions
 	self.actionRules = "rules"
 	self.actionStart = "start"
@@ -62,9 +79,17 @@ function gameStateClass.new()
 	self.nextCurseC = nil
 	
 	-- starting point
-	self.currentGameMode = self.GM_Pre
+	self.currentGameMode = self.GM_Run
 	
 	return self
+end
+
+function gameStateClass:getPlayersScore()
+	return self.player1.score +  self.player2.score + self.player3.score
+end
+
+function gameStateClass:getBadGuyScore()
+	return self.player4.score
 end
 
 function gameStateClass:callGameModeAction(actionName)
