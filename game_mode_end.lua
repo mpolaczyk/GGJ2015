@@ -3,6 +3,7 @@
 local gameModeEndClass = {}
 gameModeEndClass.__index = gameModeEndClass
 
+local common = require "common"
 
 function gameModeEndClass.new(gameState)
   local self = setmetatable({}, gameModeEndClass)
@@ -14,15 +15,13 @@ end
 function gameModeEndClass:load()
 	self.backgroundImage = love.graphics.newImage("img/bg.png")
 	
-	-- for victory
-    --self.victoryImage = love.graphics.newImage("img/wsad.png")
-	--self.playerAAvatar = love.graphics.newImage("img/wsad.png")
-	--self.playerBAvatar = love.graphics.newImage("img/wsad.png")
-	--self.playerCAvatar = love.graphics.newImage("img/wsad.png")
+	-- players 
+    self.playerAFace = love.graphics.newImage("img/player_a.png")
+	self.playerBFace = love.graphics.newImage("img/player_b.png")
+	self.playerCFace = love.graphics.newImage("img/player_c.png")
 	
-	-- for defeat
-	--self.defeatImage = love.graphics.newImage("img/wsad.png")
-	--self.playerDAvatar = love.graphics.newImage("img/wsad.png")
+	-- bad guy
+	self.playerDFace = love.graphics.newImage("img/player_d.png")
 end
 
 function gameModeEndClass:update(dt)
@@ -30,21 +29,23 @@ function gameModeEndClass:update(dt)
 end
 
 function gameModeEndClass:draw()
+	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
-	love.graphics.draw(backgroundImage, 0, 0, 0, 1, 1, 0, 0)
+	common.drawText("h2", "Victory", 0, 50, 1366, "center", "black")
 	
-	--if self.gameState.playersVictory then
-		--love.graphics.draw(victoryImage, x, y, 0, 1, 1, 0, 0)
-		--love.graphics.draw(playerAAvatar, x, y, 0, 1, 1, 0, 0)
-		--love.graphics.draw(playerBAvatar, x, y, 0, 1, 1, 0, 0)
-		--love.graphics.draw(playerCAvatar, x, y, 0, 1, 1, 0, 0)
-	--else if self.gameState.badGuyVictory then
-		--love.graphics.draw(defeatImage, x, y, 0, 1, 1, 0, 0)
-		--love.graphics.draw(playerDAvatar, x, y, 0, 1, 1, 0, 0)
-	--end
-	
-	-- temp until assets arrive
-    love.graphics.print("This is the end", 10, 10)
+	if self.gameState.playersVictory then
+		-- faces
+		love.graphics.draw(self.playerAFace, 130, 400)
+		love.graphics.draw(self.playerBFace, 550, 400)
+		love.graphics.draw(self.playerCFace, 1000, 400)
+		-- text
+		common.drawText("h3", "You've collected required amount of gold.", 0, 200, 1366, "center", "black")
+	elseif self.gameState.badGuyVictory then
+		-- face
+		love.graphics.draw(self.playerDFace, 550, 400)
+		-- text
+		common.drawText("h3", "You've caught players required number of times.", 0, 200, 1366, "center", "black")
+	end
 end
 
 function gameModeEndClass:keypressed(key)
