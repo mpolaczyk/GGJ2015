@@ -22,7 +22,7 @@ commonClass.uhjkImage = love.graphics.newImage("img/uhjk.png")
 commonClass.arrowsImage = love.graphics.newImage("img/strzalki.png")
 commonClass.mouseImage = love.graphics.newImage("img/mouse.png")
 commonClass.coinUIImage = love.graphics.newImage("img/coin_ui.png")
-	
+commonClass.curseUIImage = love.graphics.newImage("img/curse_ui.png")	
 	
 function commonClass.drawText(style, text, x, y, limit, align, color)
 	--save current
