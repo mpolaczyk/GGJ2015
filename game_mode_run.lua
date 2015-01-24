@@ -5,7 +5,6 @@ gameModeRunClass.__index = gameModeRunClass
 
 local common = require "common"
 local physicsClass = require "physics"
-local playerClass = require "player"
 local playerSpeed = 100
 
 local wallTileClass = require "wall_tile"
@@ -19,20 +18,7 @@ function gameModeRunClass.new(gameState, tileMap)
 end
 
 function gameModeRunClass:load()
-	
-	self.backgroundImage = love.graphics.newImage("img/bg_map.png")
-	
-	-- players 
-    self.playerAFace = love.graphics.newImage("img/player_a.png")
-	self.playerBFace = love.graphics.newImage("img/player_b.png")
-	self.playerCFace = love.graphics.newImage("img/player_c.png")
-	
-	-- bad guy
-	self.playerDFace = love.graphics.newImage("img/player_d.png")
-	
-	-- coin
-	self.coinImage = love.graphics.newImage("img/coin_ui.png")
-	
+	-- all assets are in common module now - flyweight
 	self.isLMBPressed = false
 	local x_, y_ = love.mouse.getPosition()
 	self.lastMousePos = {x = x_, y = y_}
@@ -46,7 +32,7 @@ function gameModeRunClass:update(dt)
 end
 
 function gameModeRunClass:draw()
-	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
+	love.graphics.draw(common.backgroundMapImage, 0, 0, 0, 1, 1, 0, 0)
 	
 	-- draw game
 	self.tileMap:draw()
@@ -57,15 +43,15 @@ function gameModeRunClass:draw()
 	
 	-- draw left panel
 	common.drawText("h1", "Players", 20, 30, 1346, "left", "black")
-	love.graphics.draw(self.playerAFace, 70, 120, 0, 0.5, 0.5)
-	love.graphics.draw(self.playerBFace, 70, 260, 0, 0.5, 0.5)
-	love.graphics.draw(self.playerCFace, 70, 380, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player1.image, 70, 120, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player2.image, 70, 260, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player3.image, 70, 380, 0, 0.5, 0.5)
 	common.drawText("h1", self.gameState:getPlayersScore(), 70, 600, 1346, "left", "black")
-	love.graphics.draw(self.coinImage, 70, 700, 0, 0.5, 0.5)
+	love.graphics.draw(common.coinUIImage, 70, 700, 0, 0.5, 0.5)
 	
 	-- draw right panel
 	common.drawText("h1", "Bad Guy", 20, 30, 1326, "right", "black")
-	love.graphics.draw(self.playerDFace, 1200, 120, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player4.image, 1200, 120, 0, 0.5, 0.5)
 	common.drawText("h1", self.gameState:getBadGuyScore(), 1200, 600, 1346, "left", "black")
 	
 end

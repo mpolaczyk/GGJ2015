@@ -13,13 +13,7 @@ function gameModeCurseClass.new(gameState)
 end
 
 function gameModeCurseClass:load()
-    self.backgroundImage = love.graphics.newImage("img/bg_curse.png")
-	self.enterImage = love.graphics.newImage("img/enter.png")
-	
-	-- players 
-	self.playerAFace = love.graphics.newImage("img/player_a.png")
-	self.playerBFace = love.graphics.newImage("img/player_b.png")
-	self.playerCFace = love.graphics.newImage("img/player_c.png")
+   -- all assets are in common module now - flyweight
 end
 
 function gameModeCurseClass:update(dt)
@@ -27,10 +21,7 @@ function gameModeCurseClass:update(dt)
 end
 
 function gameModeCurseClass:draw()
-    love.graphics.draw(self.backgroundImage, x, y, 0, 1, 1, 0, 0)
-	
-	-- draw caught player
-	--love.graphics.draw(self.gameState.caughtPlayer.avatar, x, y)
+    love.graphics.draw(common.backgroundCloudImage, x, y, 0, 1, 1, 0, 0)
 	
 	-- title
 	common.drawText("h2", "One of your companions was caught !", 0, 20, 1366, "center", "black")
@@ -38,9 +29,9 @@ function gameModeCurseClass:draw()
 	common.drawText("h4", "Apply ONE curse on ONE of you !", 0, 160, 1366, "center", "black")
 	
 	-- faces
-	love.graphics.draw(self.playerAFace, 50, 200, 0, 0.5, 0.5)
-	love.graphics.draw(self.playerBFace, 50, 370, 0, 0.5, 0.5)
-	love.graphics.draw(self.playerCFace, 50, 540, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player1.image, 50, 200, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player2.image, 50, 370, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player3.image, 50, 540, 0, 0.5, 0.5)
 	
 	-- curses
 	common.drawText("h4", self.gameState.nextCurseA, 200, 250, 1066, "left", "black")
@@ -49,7 +40,7 @@ function gameModeCurseClass:draw()
 	
 	-- draw enter button
 	common.drawText("h4", "Continue...", 0, 590, 1340, "right", "black")
-	love.graphics.draw(self.enterImage, 1200, 650, 0, 0.5, 0.5)
+	love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
 end
 
 function gameModeCurseClass:keypressed(key)

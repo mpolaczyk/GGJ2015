@@ -38,13 +38,13 @@ function gameStateClass.new()
 	self.GM_Curse:load()
 
 	-- players for Run modes
-	self.player1 = playerClass.new("img/blue.png", self.tileMap:getPos(4, 4),
+	self.player1 = playerClass.new("img/blue.png", "img/player_a.png", self.tileMap:getPos(4, 4),
 				  {width = common.tileSize*2, height = common.tileSize*2})
-	self.player2 = playerClass.new("img/red.png", self.tileMap:getPos(4, 6),
+	self.player2 = playerClass.new("img/red.png", "img/player_b.png", self.tileMap:getPos(4, 6),
 				  {width = common.tileSize*2, height = common.tileSize*2})
-	self.player3 = playerClass.new("img/yellow.png", self.tileMap:getPos(4, 8),
+	self.player3 = playerClass.new("img/yellow.png", "img/player_c.png", self.tileMap:getPos(4, 8),
 				  {width = common.tileSize*2, height = common.tileSize*2})
-	self.player4 = playerClass.new("img/evil.png", self.tileMap:getPos(4, 10),
+	self.player4 = playerClass.new("img/evil.png", "img/player_d.png", self.tileMap:getPos(4, 10),
 				  {width = common.tileSize*2, height = common.tileSize*2})
 	
 	-- fsm transitions
