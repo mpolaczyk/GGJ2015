@@ -12,7 +12,7 @@ function gameModeCurseClass.new(gameState)
 end
 
 function gameModeCurseClass:load()
-    --self.backgroundImage = love.graphics.newImage("img/wsad.png")
+    self.backgroundImage = love.graphics.newImage("img/bg.png")
 	
 	-- buttons
     --self.oneImage = love.graphics.newImage("img/wsad.png")
@@ -27,7 +27,7 @@ function gameModeCurseClass:update(dt)
 end
 
 function gameModeCurseClass:draw()
-    --love.graphics.draw(self.backgroundImage, x, y, 0, 1, 1, 0, 0)
+    love.graphics.draw(self.backgroundImage, x, y, 0, 1, 1, 0, 0)
 	--love.graphics.draw(self.titleImage, x, y, 0, 1, 1, 0, 0)
 	
 	-- draw buttons

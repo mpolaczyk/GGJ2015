@@ -22,6 +22,7 @@ function gameModeStartClass.new(gameState)
 end
 
 function gameModeStartClass:load()
+	self.backgroundImage = love.graphics.newImage("img/bg.png")
     self.playerAPane = love.graphics.newImage("img/wsad.png")
 	self.playerBPane = love.graphics.newImage("img/uhjk.png")
 	self.playerCPane = love.graphics.newImage("img/strzalki.png")
@@ -47,6 +48,7 @@ end
 
 
 function gameModeStartClass:draw()
+	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
 	-- draw player panels
 	self:drawPlayerPanel(50, 50, self.playerAPane, self.playerAFace, self.playerAReady)
