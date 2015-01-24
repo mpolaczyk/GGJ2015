@@ -23,9 +23,9 @@ function physicsClass.new(pos, size, userData, kind)
 				    size.width/2, 
 				    size.height/2, 
 				    kind)
-   self.body:setPosition(pos.x, pos.y)
    self.shape = love.physics.newRectangleShape(size.width, size.height)
    self.fixture = love.physics.newFixture(self.body, self.shape)
+   self.body:setPosition(pos.x, pos.y)
    if userData then
       self.fixture:setUserData(userData)
    end

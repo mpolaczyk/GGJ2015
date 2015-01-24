@@ -55,8 +55,8 @@ function tilemapClass.new(pos, dim)
    for i=1,numRows,1 do
       local row = {}
       for j=1,numCols,1 do
- 	 local position = {x = (j-1)*dim + pos.x,
-			   y = (i-1)*dim + pos.y}
+ 	 local position = {x = (j-1)*dim + self.pos.x,
+			   y = (i-1)*dim + self.pos.y}
 	 if tilemapPattern[i][j] == 0 then
 	    table.insert(row, pathTileClass.new(position,
 						dim))
@@ -84,7 +84,6 @@ end
 function tilemapClass:getPos(tilex, tiley)
    return {x = (tilex-1)*self.dim + self.pos.x,
 	   y = (tiley-1)*self.dim + self.pos.y}
-   
 end
 
 return tilemapClass

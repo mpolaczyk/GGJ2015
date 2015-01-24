@@ -14,8 +14,8 @@ end
 function pathTileClass:draw()
    scale = {self.dim/self.sprite:getWidth(), self.dim/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
-		      self.pos.x, 
-		      self.pos.y, 
+		      self.pos.x + self.dim*0.5, 
+		      self.pos.y + self.dim*0.5, 
 		      nil,
 		      scale[1],
 		      scale[2],
