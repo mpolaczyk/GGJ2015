@@ -48,7 +48,12 @@ function gameModeEndClass:draw()
 end
 
 function gameModeEndClass:keypressed(key)
-	
+end
+
+function gameModeEndClass:mousepressed(x, y, button)
+end
+
+function gameModeEndClass:mousereleased(x, y, button)
 end
 
 return gameModeEndClass

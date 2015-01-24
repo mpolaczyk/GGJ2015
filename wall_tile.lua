@@ -12,6 +12,7 @@ function wallTileClass.new(pos, dim)
    self.sprite = love.graphics.newImage("img/wall_tile.png")
    self.physics = physicsClass.new({x = 1, y = 2},
 				   {width = 100, height = 100})
+   self.physics.fixture:setUserData("Wall")
    return self
 end
 

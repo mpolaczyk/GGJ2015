@@ -52,10 +52,6 @@ end
 
 
 function gameModeStartClass:draw()
-	-- detect mouse click
-	if love.mouse.isDown("l") or love.mouse.isDown("r") then
-		self.playerDReady = true
-	end
 	
 	-- draw player panels
 	self:drawPlayerPanel(50, 50, self.playerAPane, self.playerAFace, self.playerAReady)
@@ -80,6 +76,12 @@ function gameModeStartClass:keypressed(key)
 	end
 end
 
+function gameModeStartClass:mousepressed(x, y, button)
+end
+
+function gameModeStartClass:mousereleased(x, y, button)
+	self.playerDReady = true
+end
 
 function gameModeStartClass:drawPlayerPanel(x, y, panelImage, faceImage, ifReady)
 	-- draw panels
