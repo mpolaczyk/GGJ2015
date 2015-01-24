@@ -1,11 +1,12 @@
 local pathTileClass = require "path_tile"
+local wallTileClass = require "wall_tile"
 
 function love.load()
-   tileInstance = pathTileClass.new({x = 0, y = 0.1})
+   pathTileInstance = pathTileClass.new({x = 0, y = 0}, 40)
+   wallTileInstance = wallTileClass.new({x = 40, y = 40}, 40)
 end
 
 function love.draw()
-   love.graphics.print(tileInstance.physics.body:getLinearVelocity(), 
-		       300, 
-		       300)
+   pathTileInstance:draw()
+   wallTileInstance:draw()
 end
