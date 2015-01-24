@@ -32,6 +32,9 @@ function gameStateClass.new()
 	self.actionPlayerWin = "player_win"
 	self.actionBadGuyContact = "bad_guy_contact"
 	
+	self.playersVictory = false
+	self.badGuyVictory = false
+	
 	self.currentGameMode = self.GM_Pre
 	
 	return self

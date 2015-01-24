@@ -12,6 +12,7 @@ function gameModePreClass.new(gameState)
 end
 
 function gameModePreClass:load()
+	--self.backgroundImage = love.graphics.newImage("img/wsad.png")
     --self.eventLogo = love.graphics.newImage("img/wsad.png")
 	--self.titleLogo = love.graphics.newImage("img/wsad.png")
 	--self.teamImage = love.graphics.newImage("img/wsad.png")
@@ -24,6 +25,7 @@ function gameModePreClass:update(dt)
 end
 
 function gameModePreClass:draw()
+	--love.graphics.draw(self.backgroundImage, x, y, 0, 1, 1, 0, 0)
     -- draw event logo
 	--love.graphics.draw(self.eventImage, x, y, 0, 1, 1, 0, 0)
 	
