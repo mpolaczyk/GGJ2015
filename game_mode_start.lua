@@ -5,16 +5,20 @@ gameModeStartClass.__index = gameModeStartClass
 
 
 function gameModeStartClass.new(gameState)
-  local self = setmetatable({}, gameModeStartClass)
-  self.moduleName = "gameModeStartClass"
-  self.gameState = gameState
+	local self = setmetatable({}, gameModeStartClass)
+	self.moduleName = "gameModeStartClass"
+	self.gameState = gameState
   
-  self.playerAReady = false
-  self.playerBReady = false
-  self.playerCReady = false
-  self.playerDReady = false
+	self.playerAReady = false
+	self.playerBReady = false
+	self.playerCReady = false
+	self.playerDReady = false
   
-  return self
+	self.counterStartTimeStamp = 0
+	self.counterDigit = 3;
+	self.counterMaxMs = 3000;
+  
+	return self
 end
 
 function gameModeStartClass:load()
@@ -32,46 +36,85 @@ function gameModeStartClass:update(dt)
     
 	-- check if game mode done
 	if self.playerAReady and self.playerBReady and self.playerCReady then
+		if self.counterStartTimeStamp == 0 then
+			-- save moment when players are ready
+			self.counterStartTimeStamp = love.timer.getTime( )
+		else
+			
+		end
+	end
+	
+	-- change game mode
+	if self.counterStartTimeStamp == self.counterMaxMs then
 		self.gameState:callGameModeAction(self.gameState.actionAllReady)
 	end
 end
 
 function gameModeStartClass:draw()
+	-- detect mouse click
+	if love.mouse.isDown("l") or love.mouse.isDown("r") then
+		self.playerDReady = true
+	end
+	
+	-- draw panels
 	love.graphics.draw(self.playerAPane, 50, 50, 0, 1, 1, 0, 0)
 	love.graphics.draw(self.playerBPane, 500, 50, 0, 1, 1, 0, 0)
 	love.graphics.draw(self.playerCPane, 950, 50, 0, 1, 1, 0, 0)
 	love.graphics.draw(self.playerDPane, 500, 400, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerAFace, 150, 150, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerBFace, 500, 50, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerCFace, 950, 50, 0, 1, 1, 0, 0)
-	love.graphics.draw(self.playerDFace, 500, 400, 0, 1, 1, 0, 0)
-
-	if self.playerAReady then
-		--love.graphics.rectangle("fill", 20, 50, 60, 120)
-	else
 	
+	-- draw faces
+	love.graphics.draw(self.playerAFace, 200, 150, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerBFace, 650, 150, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerCFace, 1100, 150, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerDFace, 650, 500, 0, 1, 1, 0, 0)
+
+	-- save current colors
+	local r, g, b, a = love.graphics.getColor( )
+	
+	-- draw texts
+	if self.playerAReady then
+		love.graphics.setColor(255, 0, 0, 255)
+		love.graphics.print("READY!", 270, 240, 0, 2, 2)
+	else
+		love.graphics.setColor(0, 255, 0, 255)
+		love.graphics.print("HIT A KEY!", 270, 240, 0, 2, 2)
 	end
 	
 	if self.playerBReady then
-		--love.graphics.rectangle("fill", 20, 50, 60, 120)
+		love.graphics.setColor(255, 0, 0, 255)
+		love.graphics.print("READY!", 730, 240, 0, 2, 2)
 	else
-	
+		love.graphics.setColor(0, 255, 0, 255)
+		love.graphics.print("HIT A KEY!", 730, 240, 0, 2, 2)
 	end
 	
 	if self.playerCReady then
-		--love.graphics.rectangle("fill", 20, 50, 60, 120)
+		love.graphics.setColor(255, 0, 0, 255)
+		love.graphics.print("READY!", 1170, 240, 0, 2, 2)
 	else
-	
+		love.graphics.setColor(0, 255, 0, 255)
+		love.graphics.print("HIT A KEY!", 1170, 240, 0, 2, 2)
 	end
 	
 	if self.playerDReady then
-		--love.graphics.rectangle("fill", 20, 50, 60, 120)
+		love.graphics.setColor(255, 0, 0, 255)
+		love.graphics.print("READY!", 730, 630, 0, 2, 2)
 	else
-	
+		love.graphics.setColor(0, 255, 0, 255)
+		love.graphics.print("HIT A KEY!", 730, 630, 0, 2, 2)
 	end
+	
+	-- draw counter
+	if self.counterStartTimeStamp > 0 then
+		
+	end
+	
+	 -- restore colors
+	love.graphics.setColor(r,g,b,a)
 end
 
 function gameModeStartClass:keypressed(key)
+	-- detect keyboard keys
 	if key == "w" or key == "w" or key == "a" or key == "d" then
 		self.playerAReady = true
 	elseif key == "u" or key == "j" or key == "j" or key == "k" then
