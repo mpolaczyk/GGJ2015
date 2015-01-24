@@ -5,6 +5,7 @@ GS = nil
 
 function love.load()
 	GS = gs.new()
+	love.window.setMode(1366, 768)
 end
 
 

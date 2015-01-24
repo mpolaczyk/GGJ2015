@@ -18,7 +18,14 @@ function gameModeStartClass.new(gameState)
 end
 
 function gameModeStartClass:load()
-    
+    self.playerAPane = love.graphics.newImage("img/wsad.png")
+	self.playerBPane = love.graphics.newImage("img/uhjk.png")
+	self.playerCPane = love.graphics.newImage("img/strzalki.png")
+	self.playerDPane = love.graphics.newImage("img/mouse.png")
+	self.playerAFace = love.graphics.newImage("img/blue.png")
+	self.playerBFace = love.graphics.newImage("img/red.png")
+	self.playerCFace = love.graphics.newImage("img/yellow.png")
+	self.playerDFace = love.graphics.newImage("img/evil.png")
 end
 
 function gameModeStartClass:update(dt)
@@ -30,6 +37,15 @@ function gameModeStartClass:update(dt)
 end
 
 function gameModeStartClass:draw()
+	love.graphics.draw(self.playerAPane, 50, 50, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerBPane, 500, 50, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerCPane, 950, 50, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerDPane, 500, 400, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerAFace, 150, 150, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerBFace, 500, 50, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerCFace, 950, 50, 0, 1, 1, 0, 0)
+	love.graphics.draw(self.playerDFace, 500, 400, 0, 1, 1, 0, 0)
+
 	if self.playerAReady then
 		--love.graphics.rectangle("fill", 20, 50, 60, 120)
 	else
