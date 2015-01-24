@@ -33,6 +33,9 @@ function gameModeRunClass:keypressed(key)
 	end
 end
 
+function gameModeRunClass.keyreleased(key)
+end
+
 function gameModeRunClass:mousepressed(x, y, button)
 end
 

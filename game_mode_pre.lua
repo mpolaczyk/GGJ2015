@@ -51,6 +51,9 @@ function gameModePreClass:keypressed(key)
 	end
 end
 
+function gameModePreClass.keyreleased(key)
+end
+
 function gameModePreClass:mousepressed(x, y, button)
 end
 

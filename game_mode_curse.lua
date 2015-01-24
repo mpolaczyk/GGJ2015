@@ -51,6 +51,9 @@ function gameModeCurseClass:keypressed(key)
 	end
 end
 
+function gameModeCurseClass.keyreleased(key)
+end
+
 function gameModeCurseClass:mousepressed(x, y, button)
 end
 

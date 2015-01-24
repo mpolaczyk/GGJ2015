@@ -80,6 +80,9 @@ function gameModeStartClass:keypressed(key)
 	end
 end
 
+function gameModeStartClass.keyreleased(key)
+end
+
 function gameModeStartClass:mousepressed(x, y, button)
 end
 

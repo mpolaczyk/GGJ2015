@@ -82,7 +82,7 @@ function gameStateClass:callGameModeAction(actionName)
 	elseif actionName == self.actionCurseResult and self.currentGameMode == self.GM_Curse then
 		self.currentGameMode = self.GM_Run
 		
-	elseif actionName == self.actionEnter and self.currentGameMode == self.GM_PRE then
+	elseif actionName == self.actionEnter and self.currentGameMode == self.GM_Pre then
 		self.currentGameMode = self.GM_Start
 		
 	else
