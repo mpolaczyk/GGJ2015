@@ -13,7 +13,7 @@ function wallTileClass.new(pos, dim)
    self.physics = physicsClass.new(pos,
 				   {width = dim, 
 				    height = dim},
-				   "Wall")
+				    self)
    return self
 end
 
@@ -28,6 +28,9 @@ function wallTileClass:draw()
 		      scale[2],
 		      nil, 
 		      nil)
+end
+
+function wallTileClass:onCollision(other)
 end
 
 return wallTileClass
