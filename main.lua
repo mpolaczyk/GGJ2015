@@ -9,17 +9,17 @@ end
 
 
 function love.update(dt)
-	-- push execution to current module
+	-- push execution to current game mode
     GS.currentGameMode:update(dt)
 end
 
 
 function love.draw()
-	-- push execution to current module
+	-- push execution to current game mode
 	GS.currentGameMode:draw()
 end
 
 function love.keypressed(key)
-	-- push execution to current module
+	-- push execution to current game mode
 	GS.currentGameMode:keypressed(key)
 end

@@ -18,6 +18,11 @@ function gameStateClass.new()
 	self.GM_End = gmEnd.new(self)
 	self.GM_Curse = gmCurse.new(self)
 	
+	self.GM_Start:load()
+	self.GM_Run:load()
+	self.GM_End:load()
+	self.GM_Curse:load()
+	
 	self.actionAllReady = "all_ready"
 	self.actionCurseResult = "curse_result"
 	self.actionPlayerWin = "player_win"
