@@ -20,12 +20,14 @@ function gameModePreClass:update(dt)
 end
 
 function gameModePreClass:draw()
-    love.graphics.setColor(0, 255, 100, 255)
+    
     love.graphics.print("This is " .. self.moduleName .. " module", 10, 10)
 end
 
 function gameModePreClass:keypressed(key)
-	
+	if key == "return" then
+		self.gameState:callGameModeAction(self.gameState.actionEnter)
+	end
 end
 
 return gameModePreClass
