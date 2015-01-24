@@ -7,6 +7,7 @@ h1Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 74)
 h2Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 64)
 h3Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 54)
 h4Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 44)
+h5Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 34)
 
 function commonClass.drawText(style, text, x, y, limit, align, color)
 	--save current
@@ -24,6 +25,8 @@ function commonClass.drawText(style, text, x, y, limit, align, color)
 		love.graphics.setFont(h4Font);
 	elseif style == "h0" then
 		love.graphics.setFont(h0Font);
+	elseif style == "h5" then
+		love.graphics.setFont(h5Font);
 	end
 	if color == "white" then
 		love.graphics.setColor(255,255,255)
@@ -44,8 +47,9 @@ commonClass.tileSize = 22
 
 -- sprites
 commonClass.backgroundImage = love.graphics.newImage("img/bg.png")
+commonClass.backgroundRulesImage = love.graphics.newImage("img/bg_rules.png")
 commonClass.backgroundMapImage = love.graphics.newImage("img/bg_map.png")
-commonClass.backgroundCloudImage = love.graphics.newImage("img/bg_curse.png")
+commonClass.backgroundCurseImage = love.graphics.newImage("img/bg_curse.png")
 commonClass.enterImage = love.graphics.newImage("img/enter.png")
 commonClass.titleImage = love.graphics.newImage("img/title.png")
 commonClass.wsadImage = love.graphics.newImage("img/wsad.png")

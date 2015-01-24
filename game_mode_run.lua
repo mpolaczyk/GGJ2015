@@ -48,7 +48,7 @@ function gameModeRunClass:draw()
 	love.graphics.draw(common.backgroundMapImage, 0, 0, 0, 1, 1, 0, 0)
 
 	-- draw left panel
-	common.drawText("h1", "Players", 20, 30, 1346, "left", "black")
+	common.drawText("h2", "The Crew", 20, 30, 1346, "left", "black")
 	love.graphics.draw(self.gameState.player1.image, 70, 120, 0, 0.5, 0.5)
 	love.graphics.draw(self.gameState.player2.image, 70, 260, 0, 0.5, 0.5)
 	love.graphics.draw(self.gameState.player3.image, 70, 380, 0, 0.5, 0.5)
@@ -56,7 +56,7 @@ function gameModeRunClass:draw()
 	love.graphics.draw(common.coinUIImage, 90, 680, 0, 0.5, 0.5)
 	
 	-- draw right panel
-	common.drawText("h1", "Bad Guy", 20, 30, 1326, "right", "black")
+	common.drawText("h2", "Evil Tom", 20, 30, 1326, "right", "black")
 	love.graphics.draw(self.gameState.player4.image, 1200, 120, 0, 0.5, 0.5)
 	common.drawText("h1", self.gameState:getBadGuyScore(), 1200, 600, 1346, "left", "black")
 	love.graphics.draw(common.curseUIImage, 1200, 670, 0, 0.4, 0.4)

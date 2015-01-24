@@ -24,7 +24,7 @@ function gameModePreClass:draw()
 	love.graphics.draw(common.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
     
 	-- event
-	common.drawText("h2", "GLOBAL GAME JAM 2015 - POZNAN - POLAND", 0, 20, 1366, "center", "black")
+	common.drawText("h2", "GLOBAL GAME JAM 2015 - POZNAN - POLAND", 0, 30, 1366, "center", "black")
 	
 	-- team
 	common.drawText("h4", "The Team:", 50, 400, 1366, "left", "black")
@@ -35,18 +35,17 @@ function gameModePreClass:draw()
 	common.drawText("h4", "Marcin Polaczyk - Developer", 70, 650, 1366, "left", "black")
 	
 	-- tech specs
-	common.drawText("h4", "Tech specs:", 520, 400, 1366, "left", "black")
-	common.drawText("h4", "Framework - LOVE", 540, 450, 1366, "left", "black")
-	common.drawText("h4", "Language - LUA", 540, 500, 1366, "left", "black")
-	common.drawText("h4", "Graphics - Photoshop", 540, 550, 1366, "left", "black")
-	common.drawText("h4", "Sounds - freesounds.org", 540, 600, 1366, "left", "black")
-	common.drawText("h4", "Source control - GitHub", 540, 650, 1366, "left", "black")
+	common.drawText("h4", "Tech specs:", 580, 400, 1366, "left", "black")
+	common.drawText("h4", "Framework - LOVE", 600, 450, 1366, "left", "black")
+	common.drawText("h4", "Language - LUA", 600, 500, 1366, "left", "black")
+	common.drawText("h4", "Graphics - Photoshop", 600, 550, 1366, "left", "black")
+	common.drawText("h4", "Sounds - freesounds.org", 600, 600, 1366, "left", "black")
+	common.drawText("h4", "Source control - GitHub", 600, 650, 1366, "left", "black")
 	
 	-- logo
 	love.graphics.draw(common.titleImage, 160, 150)
 	
 	-- draw enter button
-	common.drawText("h4", "To continue, hit:", 0, 590, 1366, "right", "black")
 	love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
 end
 

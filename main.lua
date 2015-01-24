@@ -10,6 +10,7 @@ math.randomseed( os.time() )
 function love.load()
    GS = gs.new()
    love.window.setMode(1366, 768, {fullscreen=true})
+   love.mouse.setVisible(false)
 end
 
 
