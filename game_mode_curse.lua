@@ -43,7 +43,7 @@ function gameModeCurseClass:draw()
 end
 
 function gameModeCurseClass:keypressed(key)
-	if key == "1" or key = "2" or key = "3" then
+	if key == "1" or key == "2" or key == "3" then
 		self.gameState:callGameModeAction(self.gameState.actionCurseResult)
 	end
 end
