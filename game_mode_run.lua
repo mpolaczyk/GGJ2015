@@ -1,10 +1,11 @@
 -- game_mode_run.lua
 
-local tileMapClass = require "tilemap"
-local physicsClass = require "physics"
-
 local gameModeRunClass = {}
 gameModeRunClass.__index = gameModeRunClass
+
+local tileMapClass = require "tilemap"
+local physicsClass = require "physics"
+local tileSize = 22
 
 function gameModeRunClass.new(gameState)
   local self = setmetatable({}, gameModeRunClass)
@@ -15,7 +16,7 @@ end
 
 function gameModeRunClass:load()
    physicsClass.init()
-   self.tileMap = tileMapClass.new({x = 220, y = 0})
+   self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
 end
 
 function gameModeRunClass:update(dt)
@@ -27,11 +28,11 @@ function gameModeRunClass:draw()
 end
 
 function gameModeRunClass:keypressed(key)
-	if key == "4" then
-		self.gameState:callGameModeAction(self.gameState.actionEndGame)
-	elseif key == "2" then
-		self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
-	end
+   if key == "4" then
+      self.gameState:callGameModeAction(self.gameState.actionEndGame)
+   elseif key == "2" then
+      self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
+   end
 end
 
 function gameModeRunClass.keyreleased(key)
