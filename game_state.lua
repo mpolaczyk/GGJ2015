@@ -14,27 +14,33 @@ function gameStateClass.new()
 	
 	self.moduleName = "gameStateClass"
 	
+	-- game modes and its activation
 	self.GM_Pre = gmPre.new(self)
 	self.GM_Start = gmStart.new(self)
 	self.GM_Run = gmRun.new(self)
 	self.GM_End = gmEnd.new(self)
 	self.GM_Curse = gmCurse.new(self)
-	
 	self.GM_Pre:load()
 	self.GM_Start:load()
 	self.GM_Run:load()
 	self.GM_End:load()
 	self.GM_Curse:load()
-	
+
+	-- fsm transitions
 	self.actionEnter = "enter"
 	self.actionAllReady = "all_ready"
 	self.actionCurseResult = "curse_result"
 	self.actionPlayerWin = "player_win"
 	self.actionBadGuyContact = "bad_guy_contact"
 	
+	-- flags for end game 
 	self.playersVictory = false
 	self.badGuyVictory = false
 	
+	-- caught player for curse
+	self.caughtPlayer = nil
+	
+	-- starting point
 	self.currentGameMode = self.GM_Pre
 	
 	return self
