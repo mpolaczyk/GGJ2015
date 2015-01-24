@@ -13,12 +13,7 @@ function gameModeRulesClass.new(gameState)
 end
 
 function gameModeRulesClass:load()
-	self.backgroundImage = love.graphics.newImage("img/bg.png")
-	self.enterImage = love.graphics.newImage("img/enter.png")
-	self.playerAImage = love.graphics.newImage("img/player_a.png")
-	self.playerBImage = love.graphics.newImage("img/player_b.png")
-	self.playerCImage = love.graphics.newImage("img/player_c.png")
-	self.playerDImage = love.graphics.newImage("img/player_d.png")
+	-- all assets are in common module now - flyweight
 end
 
 function gameModeRulesClass:update(dt)
@@ -26,16 +21,16 @@ function gameModeRulesClass:update(dt)
 end
 
 function gameModeRulesClass:draw()
-	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
+	love.graphics.draw(common.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
 	-- event
 	common.drawText("h2", "Rules", 50, 30, 1366, "left", "black")
 	
 	-- players avatars
-	love.graphics.draw(self.playerAImage, 50, 170, 0, 0.5, 0.5)
-	love.graphics.draw(self.playerBImage, 200, 170, 0, 0.5, 0.5)
-	love.graphics.draw(self.playerCImage, 350, 170, 0, 0.5, 0.5)
-	love.graphics.draw(self.playerDImage, 650, 170, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player1.image, 50, 170, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player2.image, 200, 170, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player3.image, 350, 170, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player4.image, 650, 170, 0, 0.5, 0.5)
 	
 	-- players rules
 	common.drawText("h4", "Players rules:", 50, 300, 1366, "left", "black")
@@ -53,7 +48,7 @@ function gameModeRulesClass:draw()
 	
     -- draw enter button
 	common.drawText("h4", "To continue, hit:", 0, 590, 1366, "right", "black")
-	love.graphics.draw(self.enterImage, 1200, 650, 0, 0.5, 0.5)
+	love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
 end
 
 function gameModeRulesClass:keypressed(key)

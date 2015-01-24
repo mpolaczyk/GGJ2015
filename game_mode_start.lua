@@ -23,15 +23,7 @@ function gameModeStartClass.new(gameState)
 end
 
 function gameModeStartClass:load()
-	self.backgroundImage = love.graphics.newImage("img/bg.png")
-    self.playerAPane = love.graphics.newImage("img/wsad.png")
-	self.playerBPane = love.graphics.newImage("img/uhjk.png")
-	self.playerCPane = love.graphics.newImage("img/strzalki.png")
-	self.playerDPane = love.graphics.newImage("img/mouse.png")
-	self.playerAFace = love.graphics.newImage("img/player_a.png")
-	self.playerBFace = love.graphics.newImage("img/player_b.png")
-	self.playerCFace = love.graphics.newImage("img/player_c.png")
-	self.playerDFace = love.graphics.newImage("img/player_d.png")
+	-- all assets are in common module now - flyweight
 end
 
 function gameModeStartClass:update(dt)
@@ -49,13 +41,13 @@ end
 
 
 function gameModeStartClass:draw()
-	love.graphics.draw(self.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
+	love.graphics.draw(common.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
 	
 	-- draw player panels
-	self:drawPlayerPanel(30, 230, self.playerAPane, self.playerAFace, self.playerAReady)
-	self:drawPlayerPanel(480, 230, self.playerBPane, self.playerBFace, self.playerBReady)
-	self:drawPlayerPanel(930, 230, self.playerCPane, self.playerCFace, self.playerCReady)
-	self:drawPlayerPanel(480, 500, self.playerDPane, self.playerDFace, self.playerDReady)
+	self:drawPlayerPanel(30, 230, common.wsadImage,  self.gameState.player1.image, self.playerAReady)
+	self:drawPlayerPanel(480, 230, common.uhjkImage, self.gameState.player2.image, self.playerBReady)
+	self:drawPlayerPanel(930, 230, common.arrowsImage, self.gameState.player3.image, self.playerCReady)
+	self:drawPlayerPanel(480, 500, common.mouseImage, self.gameState.player4.image, self.playerDReady)
 	
 	-- draw counter
 	if self.counterCurrent > 0 then

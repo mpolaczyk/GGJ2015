@@ -6,12 +6,14 @@ local playerClass = {}
 playerClass.__index = playerClass
 
 function playerClass.new(avatarPath, 
+			 imagePath,
 			 pos, 
 			 size, 
 			 name,
 			 gameState)
   local self = setmetatable({}, playerClass)
   self.sprite = love.graphics.newImage(avatarPath)
+  self.image = love.graphics.newImage(imagePath)
   self.size = size
   self.name = name
   local hitbox_size = {width = self.size.width*0.5,

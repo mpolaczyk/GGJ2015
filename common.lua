@@ -8,9 +8,22 @@ h2Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 64)
 h3Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 54)
 h4Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 44)
 
--- map
+-- map params
 commonClass.tileSize = 22
 
+-- sprites
+commonClass.backgroundImage = love.graphics.newImage("img/bg.png")
+commonClass.backgroundMapImage = love.graphics.newImage("img/bg_map.png")
+commonClass.backgroundCloudImage = love.graphics.newImage("img/bg_curse.png")
+commonClass.enterImage = love.graphics.newImage("img/enter.png")
+commonClass.titleImage = love.graphics.newImage("img/title.png")
+commonClass.wsadImage = love.graphics.newImage("img/wsad.png")
+commonClass.uhjkImage = love.graphics.newImage("img/uhjk.png")
+commonClass.arrowsImage = love.graphics.newImage("img/strzalki.png")
+commonClass.mouseImage = love.graphics.newImage("img/mouse.png")
+commonClass.coinUIImage = love.graphics.newImage("img/coin_ui.png")
+	
+	
 function commonClass.drawText(style, text, x, y, limit, align, color)
 	--save current
 	local font = love.graphics.getFont()
