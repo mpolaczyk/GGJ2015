@@ -5,16 +5,22 @@ gameModeRunClass.__index = gameModeRunClass
 
 local common = require "common"
 local physicsClass = require "physics"
+local coinClass = require "coin"
 local playerSpeed = 100
 
 local wallTileClass = require "wall_tile"
 
 function gameModeRunClass.new(gameState, tileMap)
-  local self = setmetatable({}, gameModeRunClass)
-  self.moduleName = "gameModeRunClass"
-  self.gameState = gameState
-  self.tileMap = tileMap
-  return self
+   local self = setmetatable({}, gameModeRunClass)
+   self.moduleName = "gameModeRunClass"
+   self.gameState = gameState
+   self.tileMap = tileMap
+   self.maxCoins = 3
+   self.gameState.coinsToSpawn = self.maxCoins
+   print(self.gameState.coinsToSpawn)
+   self.coins = {}
+
+   return self
 end
 
 function gameModeRunClass:load()
@@ -26,6 +32,12 @@ end
 
 function gameModeRunClass:update(dt)
    physicsClass.update(dt)
+
+   for i=1,self.gameState.coinsToSpawn do
+      self:spawnNewCoin()
+   end
+   self.gameState.coinsToSpawn = 0
+
    if self.isLMBPressed then
       self:handleMouseInput()
    end
@@ -40,6 +52,12 @@ function gameModeRunClass:draw()
 	self.gameState.player2:draw()
 	self.gameState.player3:draw()
 	self.gameState.player4:draw()
+
+	for i=1,self.maxCoins do
+	   if self.coins[i] then
+	      self.coins[i]:draw()
+	   end
+	end
 	
 	-- draw left panel
 	common.drawText("h1", "Players", 20, 30, 1346, "left", "black")
@@ -126,6 +144,26 @@ function gameModeRunClass:handleMouseInput()
    end
    self.lastMousePos.x = currX
    self.lastMousePos.y = currY
+end
+
+function gameModeRunClass:spawnNewCoin()
+   local pos = self.tileMap:getRandomFreePosition()
+   local newCoin = coinClass.new(pos, {width = 44, height = 44})
+   for i=1,self.maxCoins do
+      if self.coins[i] == nil then
+	 print("Coin spawned at pos " .. pos.x .. ", " .. pos.y)
+	 self.coins[i] = newCoin
+      end
+   end
+end
+
+function gameModeRunClass:removeCoin(coin)
+   for i=1,#self.coins do
+      if self.coins[i] == coin then
+	 self.coins[i] = nil
+	 print("Coin removed.")
+      end
+   end
 end
 
 return gameModeRunClass

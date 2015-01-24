@@ -86,4 +86,22 @@ function tilemapClass:getPos(tilex, tiley)
 	   y = (tiley-1)*self.dim + self.pos.y}
 end
 
+function tilemapClass:getRandomFreePosition()
+--   local probability = 0.05
+--   done = false
+
+--   while not done do
+--      for i=1,numRows,1 do
+--	 for j=1,numCols,1 do
+--	    if (math.random() < probability) then
+--	       return self:getPos(j, i)
+--	    end
+--	 end
+--      end
+--      probability = probability + 0.02
+--   end
+   return self:getPos(math.floor(math.random(numCols)), 
+		      math.floor(math.random(numRows)))
+end
+
 return tilemapClass
