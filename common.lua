@@ -63,6 +63,15 @@ commonClass.wall2TileImage = love.graphics.newImage("img/wall_2.png")
 commonClass.wall3TileImage = love.graphics.newImage("img/wall_3.png")
 commonClass.pathTile = love.graphics.newImage("img/path_tile.png")
 
+-- sounds
+commonClass.introSound = love.audio.newSource("snd/edited/intro.wav")
+commonClass.mapSound = love.audio.newSource("snd/edited/map.wav")
+
+function commonClass.stopAllAmbientSounds()
+	love.audio.stop(commonClass.introSound)
+	love.audio.stop(commonClass.mapSound)
+end
+
 -- curses
 function commonClass.getRandomCurse()
 	return commonClass.curses[math.random(1, table.getn(commonClass.curses))]

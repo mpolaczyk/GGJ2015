@@ -70,8 +70,8 @@ function gameStateClass.new()
 	self.nextCurseB = nil
 	self.nextCurseC = nil
 	
-	-- starting point
-	self.currentGameMode = self.GM_Run
+	-- start game
+	self:callGameModeAction("sdad")
 	
 	return self
 end
@@ -100,12 +100,16 @@ function gameStateClass:callGameModeAction(actionName)
 	-- Start screen
 	elseif self.currentGameMode == self.GM_Start and actionName == self.actionAllReady then
 		-- goto run
+		common.stopAllAmbientSounds()
+		love.audio.play(common.mapSound)
 		self.currentGameMode = self.GM_Run
 	
 	-- Run screen
 	elseif self.currentGameMode == self.GM_Run and actionName == self.actionEndGame then
 		-- goto end
 		self.currentGameMode = self.GM_End
+	
+	-- Run screen		
 	elseif self.currentGameMode == self.GM_Run and actionName == self.actionBadGuyContact then
 		-- goto curse
 		self.nextCurseA = common.getRandomCurse()
@@ -115,9 +119,15 @@ function gameStateClass:callGameModeAction(actionName)
 	
 	-- Curse screen
 	elseif self.currentGameMode == self.GM_Curse and actionName == self.actionCurseResult then
+		common.stopAllAmbientSounds()
+		love.audio.play(common.mapSound)
 		self.currentGameMode = self.GM_Run
 	else
-		error("invalid game state transition")
+		common.stopAllAmbientSounds()
+		love.audio.play(common.introSound)
+		self.currentGameMode = self.GM_Pre
+		
+		--error("invalid game state transition")
 	end
 end
 
