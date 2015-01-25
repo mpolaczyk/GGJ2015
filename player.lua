@@ -45,9 +45,11 @@ end
 function playerClass:onCollision(other)
    if (other.name) then
       if (other.name == "BadGuy") then
-	 self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
-	 self.gameState.badGuyRespawn = true
 	 other.score = other.score + 1
+	 if (other.score < self.gameState.catchesToWin) then
+	    self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
+	 end
+	 self.gameState.badGuyRespawn = true
       elseif other.name == "Coin" then
 	 if self.name ~= "BadGuy" then
 	    self.score = self.score + 1

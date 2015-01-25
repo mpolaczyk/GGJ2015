@@ -66,6 +66,7 @@ commonClass.pathTile = love.graphics.newImage("img/path_tile.png")
 -- sounds
 commonClass.introSound = love.audio.newSource("snd/edited/intro.wav")
 commonClass.mapSound = love.audio.newSource("snd/edited/map.wav")
+--commonClass.
 
 function commonClass.stopAllAmbientSounds()
 	love.audio.stop(commonClass.introSound)
