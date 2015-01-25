@@ -7,7 +7,7 @@ local common = require "common"
 local physicsClass = require "physics"
 local coinClass = require "coin"
 local playerSpeed = 100
-local badGuySpeed = playerSpeed*2
+local badGuySpeed = playerSpeed*1.5
 
 local wallTileClass = require "wall_tile"
 
@@ -20,7 +20,6 @@ function gameModeRunClass.new(gameState, tileMap)
    self.gameState.badGuyRespawn = false
    self.gameState.coinsToSpawn = self.maxCoins
    self.coins = {}
-
    return self
 end
 
@@ -39,7 +38,6 @@ function gameModeRunClass:update(dt)
    self.gameState.coinsToSpawn = 0
 
    if (self.gameState.badGuyRespawn) then
-      print("Trying to respawn bad guy.")
       local pos = self.gameState.tileMap:getPos(16, 19)
       self.gameState.player4.physics.body:setPosition(pos.x, pos.y)
       love.mouse.setPosition(pos.x, pos.y)

@@ -66,11 +66,26 @@ commonClass.pathTile = love.graphics.newImage("img/path_tile.png")
 -- sounds
 commonClass.introSound = love.audio.newSource("snd/edited/intro.wav")
 commonClass.mapSound = love.audio.newSource("snd/edited/map.wav")
+commonClass.playersVictorySound = love.audio.newSource("snd/edited/players_victory.wav")
+commonClass.badGuyVictorySound = love.audio.newSource("snd/edited/evil_win.wav")
+commonClass.peasantChoiceSound = love.audio.newSource("snd/edited/burp2.wav")
+commonClass.knightChoiceSound = love.audio.newSource("snd/edited/knight1.wav")
+commonClass.princessChoiceSound = love.audio.newSource("snd/edited/giggle2.wav")
+commonClass.evilGuyChoiceSound = love.audio.newSource("snd/edited/evil_creepy.wav")
+commonClass.catchKnightSound = love.audio.newSource("snd/edited/knight2.wav")
+commonClass.catchPrincessSound = commonClass.princessChoiceSound
+commonClass.catchPeasantSound = love.audio.newSource("snd/edited/fart2.wav")
+commonClass.screenTransitionSound = love.audio.newSource("snd/edited/screen_transition2.wav")
+commonClass.curseAppliedSound = commonClass.badGuyVictorySound
+commonClass.coinCollectedSound = love.audio.newSource("snd/edited/coin.wav")
+
+
 --commonClass.
 
 function commonClass.stopAllAmbientSounds()
 	love.audio.stop(commonClass.introSound)
 	love.audio.stop(commonClass.mapSound)
+	love.audio.stop(commonClass.curseAppliedSound)
 end
 
 -- curses

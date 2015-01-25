@@ -1,5 +1,7 @@
 -- player.lua
 
+local common = require "common"
+
 local physicsClass = require "physics"
 
 local playerClass = {}
@@ -50,11 +52,19 @@ function playerClass:onCollision(other)
 	    self.gameState:callGameModeAction(self.gameState.actionBadGuyContact)
 	 end
 	 self.gameState.badGuyRespawn = true
+	 if (self.name == "Knight") then
+	    love.audio.play(common.catchKnightSound)
+	 elseif self.name == "Princess" then
+	    love.audio.play(common.catchPrincessSound)
+	 elseif self.name == "Peasant" then
+	    love.audio.play(common.catchPeasantSound)
+	 end
       elseif other.name == "Coin" then
 	 if self.name ~= "BadGuy" then
 	    self.score = self.score + 1
 	    self.gameState.currentGameMode:removeCoin(other)
 	    self.gameState.coinsToSpawn = self.gameState.coinsToSpawn + 1
+	    love.audio.play(common.coinCollectedSound)
 	 end
       end
    end

@@ -21,6 +21,10 @@ function gameStateClass.new()
 	
 	self.moduleName = "gameStateClass"
 	
+	common.introSound:setLooping(true)
+	common.mapSound:setLooping(true)
+	common.curseAppliedSound:setLooping(true)
+	
 	-- game modes and its activation
 	self.GM_Pre = gmPre.new(self)
 	self.GM_Rules = gmRules.new(self)
@@ -30,8 +34,8 @@ function gameStateClass.new()
 	self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
 	self.coinsToSpawn = 0
 	self.badGuyRespawn = false
-	self.coinsToWin = 10
-	self.catchesToWin = 5
+	self.coinsToWin = 20
+	self.catchesToWin = 10
 
 	self.GM_Run = gmRun.new(self, self.tileMap)
 	self.GM_End = gmEnd.new(self)
@@ -44,11 +48,11 @@ function gameStateClass.new()
 	self.GM_Curse:load()
 	
 	-- players for Run modes
-	self.player1 = playerClass.new("img/player_A_map.png", "img/player_a.png", self.tileMap:getPos(2, 2),
+	self.player1 = playerClass.new("img/player_A_map.png", "img/player_a.png", self.tileMap:getPos(3, 3),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Knight", self)
-	self.player2 = playerClass.new("img/player_B_map.png", "img/player_b.png", self.tileMap:getPos(2, 8),
+	self.player2 = playerClass.new("img/player_B_map.png", "img/player_b.png", self.tileMap:getPos(38, 2),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Princess", self)
-	self.player3 = playerClass.new("img/player_C_map.png", "img/player_c.png", self.tileMap:getPos(8, 2),
+	self.player3 = playerClass.new("img/player_C_map.png", "img/player_c.png", self.tileMap:getPos(3, 30),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Peasant", self)
 	self.player4 = playerClass.new("img/player_D_map.png", "img/player_d.png", self.tileMap:getPos(20, 15),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "BadGuy", self)
@@ -94,11 +98,13 @@ function gameStateClass:callGameModeAction(actionName)
 	if self.currentGameMode == self.GM_Pre  and actionName == self.actionRules then
 		-- goto rules
 		self.currentGameMode = self.GM_Rules
+		love.audio.play(common.screenTransitionSound)
 	
 	-- Rules screen
 	elseif self.currentGameMode == self.GM_Rules  and actionName == self.actionStart then
 		-- goto start
 		self.currentGameMode = self.GM_Start
+		love.audio.play(common.screenTransitionSound)
 		
 	-- Start screen
 	elseif self.currentGameMode == self.GM_Start and actionName == self.actionAllReady then
@@ -110,7 +116,8 @@ function gameStateClass:callGameModeAction(actionName)
 	-- Run screen
 	elseif self.currentGameMode == self.GM_Run and actionName == self.actionEndGame then
 		-- goto end
-		self.currentGameMode = self.GM_End
+	   common.stopAllAmbientSounds()
+	   self.currentGameMode = self.GM_End
 	
 	-- Run screen		
 	elseif self.currentGameMode == self.GM_Run and actionName == self.actionBadGuyContact then
@@ -119,6 +126,9 @@ function gameStateClass:callGameModeAction(actionName)
 		self.nextCurseB = common.getRandomCurse()
 		self.nextCurseC = common.getRandomCurse()
 		self.currentGameMode = self.GM_Curse
+
+		common.stopAllAmbientSounds()
+		love.audio.play(common.curseAppliedSound)
 	
 	-- Curse screen
 	elseif self.currentGameMode == self.GM_Curse and actionName == self.actionCurseResult then

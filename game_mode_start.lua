@@ -66,10 +66,13 @@ function gameModeStartClass:keypressed(key)
 	-- detect keyboard keys
 	if key == "w" or key == "w" or key == "a" or key == "d" then
 		self.playerAReady = true
+		love.audio.play(common.knightChoiceSound)
 	elseif key == "u" or key == "j" or key == "j" or key == "k" then
 		self.playerBReady = true
+		love.audio.play(common.princessChoiceSound)
 	elseif key == "up" or key == "down" or key == "left" or key == "right" then
 		self.playerCReady = true
+		love.audio.play(common.peasantChoiceSound)
 	end
 end
 
@@ -78,6 +81,7 @@ end
 
 function gameModeStartClass:mousepressed(x, y, button)
 	self.playerDReady = true
+	love.audio.play(common.evilGuyChoiceSound)
 end
 
 function gameModeStartClass:mousereleased(x, y, button)
