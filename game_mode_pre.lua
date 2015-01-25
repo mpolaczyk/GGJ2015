@@ -21,7 +21,7 @@ function gameModePreClass:update(dt)
 end
 
 function gameModePreClass:draw()
-	love.graphics.draw(common.backgroundImage, 0, 0, 0, 1, 1, 0, 0)
+	love.graphics.draw(common.background2Image, 0, 0, 0, 1, 1, 0, 0)
     
 	-- event
 	common.drawText("h2", "GLOBAL GAME JAM 2015 - POZNAN - POLAND", 0, 30, 1366, "center", "black")

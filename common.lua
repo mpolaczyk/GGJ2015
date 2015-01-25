@@ -47,6 +47,7 @@ commonClass.tileSize = 22
 
 -- sprites
 commonClass.backgroundImage = love.graphics.newImage("img/bg.png")
+commonClass.background2Image = love.graphics.newImage("img/bg2.png")
 commonClass.backgroundRulesImage = love.graphics.newImage("img/bg_rules.png")
 commonClass.backgroundMapImage = love.graphics.newImage("img/bg_map.png")
 commonClass.backgroundCurseImage = love.graphics.newImage("img/bg_curse.png")
