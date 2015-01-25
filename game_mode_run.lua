@@ -17,8 +17,6 @@ function gameModeRunClass.new(gameState, tileMap)
    self.gameState = gameState
    self.tileMap = tileMap
    self.maxCoins = 3
-   self.mouseInpTimer = 0
-   self.mouseInpIntvl = 0
    self.gameState.badGuyRespawn = false
    self.gameState.coinsToSpawn = self.maxCoins
    self.coins = {}
@@ -48,11 +46,16 @@ function gameModeRunClass:update(dt)
       self.gameState.badGuyRespawn = false
    end
 
-   self.mouseInpTimer = self.mouseInpTimer + dt
-   if self.mouseInpTimer >= self.mouseInpIntvl then
-      self:handleMouseInput()
-      self.mouseInpTimer = 0
+   self:handleMouseInput()
+
+   if (self.gameState:getPlayersScore() >= self.gameState.coinsToWin) then
+      self.gameState.playersVictory = true
+      self.gameState:callGameModeAction(self.gameState.actionEndGame)
+   elseif (self.gameState:getBadGuyScore() >= self.gameState.catchesToWin) then
+      self.gameState.badGuyVictory = true
+      self.gameState:callGameModeAction(self.gameState.actionEndGame)
    end
+
 end
 
 function gameModeRunClass:draw()

@@ -30,6 +30,8 @@ function gameStateClass.new()
 	self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
 	self.coinsToSpawn = 0
 	self.badGuyRespawn = false
+	self.coinsToWin = 10
+	self.catchesToWin = 5
 
 	self.GM_Run = gmRun.new(self, self.tileMap)
 	self.GM_End = gmEnd.new(self)
