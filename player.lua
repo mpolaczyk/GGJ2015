@@ -33,8 +33,8 @@ function playerClass:draw()
    local scale = {self.size.width/self.sprite:getWidth(),
 		  self.size.height/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
-		      x, 
-		      y, 
+		      x-10, -- hardcoded offset for hit box
+		      y-10, 
 		      nil,
 		      scale[1],
 		      scale[2],

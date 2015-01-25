@@ -3,9 +3,11 @@
 local pathTileClass = {}
 pathTileClass.__index = pathTileClass
 
+local common = require "common"
+
 function pathTileClass.new(pos, dim)
    local self = setmetatable({}, pathTileClass)
-   self.sprite = love.graphics.newImage("img/path_tile.png")
+   self.sprite = common.pathTile	
    self.name = "Path"
    self.pos = pos
    self.dim = dim
