@@ -9,6 +9,7 @@ function wallTileClass.new(pos, dim)
    local self = setmetatable({}, wallTileClass)
    self.pos = pos
    self.dim = dim
+   self.name = "Wall"
    self.sprite = love.graphics.newImage("img/wall_tile.png")
    self.physics = physicsClass.new(pos,
 				   {width = dim, 

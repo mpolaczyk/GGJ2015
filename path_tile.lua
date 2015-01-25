@@ -6,6 +6,7 @@ pathTileClass.__index = pathTileClass
 function pathTileClass.new(pos, dim)
    local self = setmetatable({}, pathTileClass)
    self.sprite = love.graphics.newImage("img/path_tile.png")
+   self.name = "Path"
    self.pos = pos
    self.dim = dim
    return self

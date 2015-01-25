@@ -5,6 +5,7 @@
 # Backup files
 _*
 
+*.bak
 *.bat
 *.sh
 *.py
