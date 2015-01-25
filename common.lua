@@ -57,7 +57,11 @@ commonClass.uhjkImage = love.graphics.newImage("img/uhjk.png")
 commonClass.arrowsImage = love.graphics.newImage("img/strzalki.png")
 commonClass.mouseImage = love.graphics.newImage("img/mouse.png")
 commonClass.coinUIImage = love.graphics.newImage("img/coin_ui.png")
-commonClass.curseUIImage = love.graphics.newImage("img/curse_ui.png")	
+commonClass.curseUIImage = love.graphics.newImage("img/curse_ui.png")
+commonClass.wall1TileImage = love.graphics.newImage("img/wall_1.png")
+commonClass.wall2TileImage = love.graphics.newImage("img/wall_2.png")
+commonClass.wall3TileImage = love.graphics.newImage("img/wall_3.png")
+commonClass.pathTile = love.graphics.newImage("img/path_tile.png")
 
 -- curses
 function commonClass.getRandomCurse()

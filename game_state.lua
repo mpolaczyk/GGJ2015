@@ -41,14 +41,14 @@ function gameStateClass.new()
 	self.GM_Curse:load()
 	
 	-- players for Run modes
-	self.player1 = playerClass.new("img/blue.png", "img/player_a.png", self.tileMap:getPos(4, 4),
-				  {width = common.tileSize*2, height = common.tileSize*2}, "Knight", self)
-	self.player2 = playerClass.new("img/red.png", "img/player_b.png", self.tileMap:getPos(4, 6),
-				  {width = common.tileSize*2, height = common.tileSize*2}, "Princess", self)
-	self.player3 = playerClass.new("img/yellow.png", "img/player_c.png", self.tileMap:getPos(4, 8),
-				  {width = common.tileSize*2, height = common.tileSize*2}, "Peasant", self)
+	self.player1 = playerClass.new("img/player_A_map.png", "img/player_a.png", self.tileMap:getPos(4, 4),
+				  {width = common.tileSize*3, height = common.tileSize*3}, "Knight", self)
+	self.player2 = playerClass.new("img/player_B_map.png", "img/player_b.png", self.tileMap:getPos(4, 6),
+				  {width = common.tileSize*3, height = common.tileSize*3}, "Princess", self)
+	self.player3 = playerClass.new("img/player_C_map.png", "img/player_c.png", self.tileMap:getPos(4, 8),
+				  {width = common.tileSize*3, height = common.tileSize*3}, "Peasant", self)
 	self.player4 = playerClass.new("img/evil.png", "img/player_d.png", self.tileMap:getPos(4, 10),
-				  {width = common.tileSize*2, height = common.tileSize*2}, "BadGuy", self)
+				  {width = common.tileSize*3, height = common.tileSize*3}, "BadGuy", self)
 	
 	-- fsm transitions
 	self.actionRules = "rules"
