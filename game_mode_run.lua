@@ -7,7 +7,7 @@ local common = require "common"
 local physicsClass = require "physics"
 local coinClass = require "coin"
 local playerSpeed = 100
-local badGuySpeed = playerSpeed*2
+local badGuySpeed = playerSpeed*1.5
 
 local wallTileClass = require "wall_tile"
 

@@ -34,8 +34,8 @@ function gameStateClass.new()
 	self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
 	self.coinsToSpawn = 0
 	self.badGuyRespawn = false
-	self.coinsToWin = 10
-	self.catchesToWin = 5
+	self.coinsToWin = 20
+	self.catchesToWin = 10
 
 	self.GM_Run = gmRun.new(self, self.tileMap)
 	self.GM_End = gmEnd.new(self)
@@ -48,11 +48,11 @@ function gameStateClass.new()
 	self.GM_Curse:load()
 	
 	-- players for Run modes
-	self.player1 = playerClass.new("img/player_A_map.png", "img/player_a.png", self.tileMap:getPos(2, 2),
+	self.player1 = playerClass.new("img/player_A_map.png", "img/player_a.png", self.tileMap:getPos(3, 3),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Knight", self)
-	self.player2 = playerClass.new("img/player_B_map.png", "img/player_b.png", self.tileMap:getPos(2, 8),
+	self.player2 = playerClass.new("img/player_B_map.png", "img/player_b.png", self.tileMap:getPos(38, 2),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Princess", self)
-	self.player3 = playerClass.new("img/player_C_map.png", "img/player_c.png", self.tileMap:getPos(8, 2),
+	self.player3 = playerClass.new("img/player_C_map.png", "img/player_c.png", self.tileMap:getPos(3, 30),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Peasant", self)
 	self.player4 = playerClass.new("img/evil.png", "img/player_d.png", self.tileMap:getPos(20, 15),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "BadGuy", self)
