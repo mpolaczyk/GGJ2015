@@ -34,7 +34,7 @@ function gameModeRulesClass:draw()
 	
 	-- players rules
 	common.drawText("h4", "The Crew:", 50, 300, 1366, "left", "black")
-	common.drawText("h5", "Move around the maze and collect 10 Coins of Power.", 70, 350, 1366, "left", "black")
+	common.drawText("h5", "Move around the maze and collect 20 Coins of Power.", 70, 350, 1366, "left", "black")
 	
 	common.drawText("h5", "But be careful!", 70, 400, 1366, "left", "black")
 	common.drawText("h5", "Evil Tom wants to turn your life into a nightmare. Whenever", 70, 430, 1366, "left", "black")
@@ -45,8 +45,8 @@ function gameModeRulesClass:draw()
 	common.drawText("h5", "if it is replaced with a new curse colliding with ", 70, 570, 1366, "left", "black")
 	common.drawText("h5", "a previous one.", 70, 600, 1366, "left", "black")
 	
-	common.drawText("h5", "Game is over when all the players are unable to play", 70, 650, 1366, "center", "black")
-	common.drawText("h5", "or have been caught five times.", 70, 680, 1366, "center", "black")
+	common.drawText("h4", "Game is over when all the players are unable to play", 70, 650, 1366, "center", "black")
+	common.drawText("h4", "or have been caught 10 times.", 70, 700, 1366, "center", "black")
 	
 	 
 	-- bad guy rules
