@@ -16,6 +16,8 @@ function gameModeRunClass.new(gameState, tileMap)
    self.gameState = gameState
    self.tileMap = tileMap
    self.maxCoins = 3
+   self.mouseInpTimer = 0
+   self.mouseInpIntvl = 0
    self.gameState.coinsToSpawn = self.maxCoins
    print(self.gameState.coinsToSpawn)
    self.coins = {}
@@ -25,7 +27,6 @@ end
 
 function gameModeRunClass:load()
 	-- all assets are in common module now - flyweight
-	self.isLMBPressed = false
 	local x_, y_ = love.mouse.getPosition()
 	self.lastMousePos = {x = x_, y = y_}
 end
@@ -39,8 +40,11 @@ function gameModeRunClass:update(dt)
    end
    self.gameState.coinsToSpawn = 0
 
-   if self.isLMBPressed then
+   
+   self.mouseInpTimer = self.mouseInpTimer + dt
+   if self.mouseInpTimer >= self.mouseInpIntvl then
       self:handleMouseInput()
+      self.mouseInpTimer = 0
    end
 end
 
@@ -124,29 +128,26 @@ function gameModeRunClass.keyreleased(key)
 end
 
 function gameModeRunClass:mousepressed(x, y, button)
-   self.isLMBPressed = true
 end
 
 function gameModeRunClass:mousereleased(x, y, button)
-   self.isLMBPressed = false
 end
 
 function gameModeRunClass:handleMouseInput()
-   local lastX = self.lastMousePos.x
-   local lastY = self.lastMousePos.y
+   local epsilon = 10
+   local lastX, lastY = self.gameState.player4.physics.body:getPosition()
    local currX, currY = love.mouse.getPosition()
-   local tolerance = 20
-   if lastX + tolerance < currX then
-      self.gameState.player4.physics.body:setLinearVelocity(playerSpeed, 0)
-   elseif lastX > currX + tolerance then
-      self.gameState.player4.physics.body:setLinearVelocity(-playerSpeed, 0)
-   elseif lastY + tolerance < currY then
-      self.gameState.player4.physics.body:setLinearVelocity(0, playerSpeed)
-   elseif lastY > currY + tolerance then
-      self.gameState.player4.physics.body:setLinearVelocity(0, -playerSpeed)
+   local dX = currX - lastX
+   local dY = currY - lastY
+   local dirVectorLen = math.sqrt(dX^2 + dY^2)
+   if dirVectorLen > epsilon then
+      local dirUnitVec = {dX/dirVectorLen, dY/dirVectorLen}
+      self.gameState.player4.physics.body:setLinearVelocity(
+	 playerSpeed*dirUnitVec[1], 
+	 playerSpeed*dirUnitVec[2]
+      )
    end
-   self.lastMousePos.x = currX
-   self.lastMousePos.y = currY
+   love.mouse.setPosition(lastX, lastY)
 end
 
 function gameModeRunClass:spawnNewCoin()
@@ -154,7 +155,6 @@ function gameModeRunClass:spawnNewCoin()
    local newCoin = coinClass.new(pos, {width = 44, height = 44})
    for i=1,self.maxCoins do
       if self.coins[i] == nil then
-	 print("Coin spawned at pos " .. pos.x .. ", " .. pos.y)
 	 self.coins[i] = newCoin
 	 break
       end
@@ -166,7 +166,6 @@ function gameModeRunClass:removeCoin(coin)
       if self.coins[i] == coin then
 	 self.coins[i]:destroy()
 	 self.coins[i] = nil
-	 print("Coin removed.")
       end
    end
 end
