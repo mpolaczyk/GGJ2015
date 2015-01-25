@@ -9,6 +9,10 @@ function gameModeCurseClass.new(gameState)
   local self = setmetatable({}, gameModeCurseClass)
   self.moduleName = "gameModeCurseClass"
   self.gameState = gameState
+
+  self.counterMax = 5.0
+  self.counterBlockInput = 2.0
+  self.counterCurrent = 0.0
   return self
 end
 
@@ -17,7 +21,7 @@ function gameModeCurseClass:load()
 end
 
 function gameModeCurseClass:update(dt)
-    
+   self.counterCurrent = self.counterCurrent + dt
 end
 
 function gameModeCurseClass:draw()
@@ -37,15 +41,20 @@ function gameModeCurseClass:draw()
 	common.drawText("h4", self.gameState.nextCurseA, 200, 250, 1066, "left", "black")
 	common.drawText("h4", self.gameState.nextCurseB, 200, 420, 1066, "left", "black")
 	common.drawText("h4", self.gameState.nextCurseC, 200, 590, 1066, "left", "black")
-	
-	-- draw enter button
-	love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
+
+	if self.counterCurrent >= self.counterMax then
+	   -- draw enter button
+	   love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
+	end
+
 end
 
 function gameModeCurseClass:keypressed(key)
+   if self.counterCurrent >= self.counterBlockInput then
 	if key == "1" or key == "2" or key == "3" or key == "return" then
 		self.gameState:callGameModeAction(self.gameState.actionCurseResult)
 	end
+   end
 end
 
 function gameModeCurseClass.keyreleased(key)
