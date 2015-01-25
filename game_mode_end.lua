@@ -21,7 +21,7 @@ function gameModeEndClass:update(dt)
 end
 
 function gameModeEndClass:draw()
-	love.graphics.draw(common.backgroundMapImage, 0, 0, 0, 1, 1, 0, 0)
+	love.graphics.draw(common.backgroundClearImage, 0, 0, 0, 1, 1, 0, 0)
 	
 	common.drawText("h1", "Victory !", 0, 50, 1366, "center", "black")
 	
