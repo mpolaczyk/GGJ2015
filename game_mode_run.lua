@@ -7,6 +7,7 @@ local common = require "common"
 local physicsClass = require "physics"
 local coinClass = require "coin"
 local playerSpeed = 100
+local badGuySpeed = playerSpeed*2
 
 local wallTileClass = require "wall_tile"
 
@@ -134,7 +135,7 @@ function gameModeRunClass:mousereleased(x, y, button)
 end
 
 function gameModeRunClass:handleMouseInput()
-   local epsilon = 10
+   local epsilon = badGuySpeed*0.4
    local lastX, lastY = self.gameState.player4.physics.body:getPosition()
    local currX, currY = love.mouse.getPosition()
    local dX = currX - lastX
@@ -143,8 +144,8 @@ function gameModeRunClass:handleMouseInput()
    if dirVectorLen > epsilon then
       local dirUnitVec = {dX/dirVectorLen, dY/dirVectorLen}
       self.gameState.player4.physics.body:setLinearVelocity(
-	 playerSpeed*dirUnitVec[1], 
-	 playerSpeed*dirUnitVec[2]
+	 badGuySpeed*dirUnitVec[1], 
+	 badGuySpeed*dirUnitVec[2]
       )
    end
    love.mouse.setPosition(lastX, lastY)
