@@ -45,14 +45,14 @@ function gameModeRulesClass:draw()
 	common.drawText("h5", "if it is replaced with a new curse colliding with ", 70, 570, 1366, "left", "black")
 	common.drawText("h5", "a previous one.", 70, 600, 1366, "left", "black")
 	
-	common.drawText("h5", "Game is over when all the players are unable to play", 70, 650, 1366, "left", "black")
-	common.drawText("h5", "or have been caught five times.", 70, 680, 1366, "left", "black")
+	common.drawText("h5", "Game is over when all the players are unable to play", 70, 650, 1366, "center", "black")
+	common.drawText("h5", "or have been caught five times.", 70, 680, 1366, "center", "black")
 	
 	 
 	-- bad guy rules
 	common.drawText("h4", "Evil Tom:", 780, 300, 1366, "left", "black")
 	common.drawText("h5", "Chase those pesky trespassers and curse them", 800, 350, 1366, "left", "black")
-	common.drawText("h5", "with your loathsome and random witchcraft", 800, 380, 1366, "left", "black")
+	common.drawText("h5", "with your loathsome and random witchcraft.", 800, 380, 1366, "left", "black")
 
 	
     -- draw enter button
