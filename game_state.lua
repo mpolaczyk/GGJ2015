@@ -25,8 +25,11 @@ function gameStateClass.new()
 	self.GM_Pre = gmPre.new(self)
 	self.GM_Rules = gmRules.new(self)
 	self.GM_Start = gmStart.new(self)
+
 	physicsClass.init()
 	self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
+	self.coinsToSpawn = 0
+
 	self.GM_Run = gmRun.new(self, self.tileMap)
 	self.GM_End = gmEnd.new(self)
 	self.GM_Curse = gmCurse.new(self)
@@ -36,7 +39,7 @@ function gameStateClass.new()
 	self.GM_Run:load()
 	self.GM_End:load()
 	self.GM_Curse:load()
-
+	
 	-- players for Run modes
 	self.player1 = playerClass.new("img/blue.png", "img/player_a.png", self.tileMap:getPos(4, 4),
 				  {width = common.tileSize*2, height = common.tileSize*2}, "Knight", self)
@@ -113,7 +116,6 @@ function gameStateClass:callGameModeAction(actionName)
 	-- Curse screen
 	elseif self.currentGameMode == self.GM_Curse and actionName == self.actionCurseResult then
 		self.currentGameMode = self.GM_Run
-		
 	else
 		error("invalid game state transition")
 	end
