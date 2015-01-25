@@ -55,9 +55,9 @@ function gameModeStartClass:draw()
 	if self.counterCurrent > 0 then
 		local val = math.floor(self.counterMax - self.counterCurrent)
 		if (val > 0) then
-			common.drawText("h0", val, 0, 275, 1366, "center", "red")
+			common.drawText("h0", val, 0, 200, 1366, "center", "red")
 		else
-			common.drawText("h0", "START", 0, 275, 1366, "center", "red")
+			common.drawText("h0", "START", 0, 200, 1366, "center", "red")
 		end
 	end
 end
