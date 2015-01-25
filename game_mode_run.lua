@@ -36,7 +36,6 @@ function gameModeRunClass:update(dt)
    physicsClass.update(dt)
 
    for i=1,self.gameState.coinsToSpawn do
-      print("Spawning new coin.")
       self:spawnNewCoin()
    end
    self.gameState.coinsToSpawn = 0

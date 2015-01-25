@@ -14,7 +14,8 @@ function coinClass.new(pos, size)
 		       height = self.size.height *0.5}
   self.physics = physicsClass.new(pos,
 				  hitbox_size, 
-				  self)
+				  self,
+				  "dynamic")
   self.physics.body:setFixedRotation(true)
   self.score = 0
   return self
@@ -39,7 +40,6 @@ function coinClass:destroy()
 end
 
 function coinClass:onCollision()
-   print("Coin collided with something!")
 end
 
 return coinClass
