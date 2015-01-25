@@ -29,6 +29,7 @@ function gameStateClass.new()
 	physicsClass.init()
 	self.tileMap = tileMapClass.new({x = 220, y = 0}, 22)
 	self.coinsToSpawn = 0
+	self.badGuyRespawn = false
 
 	self.GM_Run = gmRun.new(self, self.tileMap)
 	self.GM_End = gmEnd.new(self)

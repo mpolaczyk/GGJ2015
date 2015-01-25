@@ -19,8 +19,8 @@ function gameModeRunClass.new(gameState, tileMap)
    self.maxCoins = 3
    self.mouseInpTimer = 0
    self.mouseInpIntvl = 0
+   self.gameState.badGuyRespawn = false
    self.gameState.coinsToSpawn = self.maxCoins
-   print(self.gameState.coinsToSpawn)
    self.coins = {}
 
    return self
@@ -40,7 +40,14 @@ function gameModeRunClass:update(dt)
    end
    self.gameState.coinsToSpawn = 0
 
-   
+   if (self.gameState.badGuyRespawn) then
+      print("Trying to respawn bad guy.")
+      local pos = self.gameState.tileMap:getPos(16, 19)
+      self.gameState.player4.physics.body:setPosition(pos.x, pos.y)
+      love.mouse.setPosition(pos.x, pos.y)
+      self.gameState.badGuyRespawn = false
+   end
+
    self.mouseInpTimer = self.mouseInpTimer + dt
    if self.mouseInpTimer >= self.mouseInpIntvl then
       self:handleMouseInput()
