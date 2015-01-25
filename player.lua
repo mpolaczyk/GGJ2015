@@ -16,8 +16,8 @@ function playerClass.new(avatarPath,
   self.image = love.graphics.newImage(imagePath)
   self.size = size
   self.name = name
-  local hitbox_size = {width = self.size.width*0.5,
-		       height = self.size.width*0.5}
+  local hitbox_size = {width = self.size.width*0.4,
+		       height = self.size.width*0.4}
   self.physics = physicsClass.new(pos,
 				  hitbox_size, 
 				  self,
@@ -33,8 +33,8 @@ function playerClass:draw()
    local scale = {self.size.width/self.sprite:getWidth(),
 		  self.size.height/self.sprite:getHeight()}
    love.graphics.draw(self.sprite, 
-		      x-10, -- hardcoded offset for hit box
-		      y-10, 
+		      x-12, -- hardcoded offset for hit box
+		      y-12, 
 		      nil,
 		      scale[1],
 		      scale[2],
