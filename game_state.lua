@@ -21,6 +21,10 @@ function gameStateClass.new()
 	
 	self.moduleName = "gameStateClass"
 	
+	common.introSound:setLooping(true)
+	common.mapSound:setLooping(true)
+	common.curseAppliedSound:setLooping(true)
+	
 	-- game modes and its activation
 	self.GM_Pre = gmPre.new(self)
 	self.GM_Rules = gmRules.new(self)
@@ -94,11 +98,13 @@ function gameStateClass:callGameModeAction(actionName)
 	if self.currentGameMode == self.GM_Pre  and actionName == self.actionRules then
 		-- goto rules
 		self.currentGameMode = self.GM_Rules
+		love.audio.play(common.screenTransitionSound)
 	
 	-- Rules screen
 	elseif self.currentGameMode == self.GM_Rules  and actionName == self.actionStart then
 		-- goto start
 		self.currentGameMode = self.GM_Start
+		love.audio.play(common.screenTransitionSound)
 		
 	-- Start screen
 	elseif self.currentGameMode == self.GM_Start and actionName == self.actionAllReady then
@@ -119,6 +125,9 @@ function gameStateClass:callGameModeAction(actionName)
 		self.nextCurseB = common.getRandomCurse()
 		self.nextCurseC = common.getRandomCurse()
 		self.currentGameMode = self.GM_Curse
+
+		common.stopAllAmbientSounds()
+		love.audio.play(common.curseAppliedSound)
 	
 	-- Curse screen
 	elseif self.currentGameMode == self.GM_Curse and actionName == self.actionCurseResult then

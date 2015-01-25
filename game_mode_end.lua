@@ -32,11 +32,13 @@ function gameModeEndClass:draw()
 		love.graphics.draw(self.gameState.player3.image, 1000, 400)
 		-- text
 		common.drawText("h2", "You've collected required amount of gold !", 0, 200, 1366, "center", "black")
+		love.audio.play(common.playersVictorySound)
 	elseif self.gameState.badGuyVictory then
 		-- face
 		love.graphics.draw(self.gameState.player4.image, 550, 400)
 		-- text
 		common.drawText("h2", "You've caught players required number of times !", 0, 200, 1366, "center", "black")
+		love.audio.play(common.badGuyVictorySound)
 	end
 end
 

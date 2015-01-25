@@ -20,7 +20,6 @@ function gameModeRunClass.new(gameState, tileMap)
    self.gameState.badGuyRespawn = false
    self.gameState.coinsToSpawn = self.maxCoins
    self.coins = {}
-
    return self
 end
 
