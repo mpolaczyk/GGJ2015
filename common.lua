@@ -2,7 +2,7 @@
 local commonClass = {}
 
 -- fonts
-h0Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 94)
+h0Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 314)
 h1Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 74)
 h2Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 64)
 h3Font = love.graphics.newFont("font/Cardenio Modern Bold.ttf", 54)

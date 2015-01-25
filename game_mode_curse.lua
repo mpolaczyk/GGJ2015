@@ -32,21 +32,26 @@ function gameModeCurseClass:draw()
 	common.drawText("h4", "What do you do now ?", 0, 90, 1366, "center", "black")
 	common.drawText("h4", "Apply ONE curse on ONE of you !", 0, 160, 1366, "center", "black")
 	
+	-- options
+	-- curses
+	common.drawText("h4", "Option 1: ", 70, 250, 1066, "left", "black")
+	common.drawText("h4", "Option 2: ", 70, 420, 1066, "left", "black")
+	common.drawText("h4", "Option 3: ", 70, 590, 1066, "left", "black")
+	
 	-- faces
-	love.graphics.draw(self.gameState.player1.image, 50, 200, 0, 0.5, 0.5)
-	love.graphics.draw(self.gameState.player2.image, 50, 370, 0, 0.5, 0.5)
-	love.graphics.draw(self.gameState.player3.image, 50, 540, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player1.image, 230, 200, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player2.image, 230, 370, 0, 0.5, 0.5)
+	love.graphics.draw(self.gameState.player3.image, 230, 540, 0, 0.5, 0.5)
 	
 	-- curses
-	common.drawText("h4", self.gameState.nextCurseA, 200, 250, 1066, "left", "black")
-	common.drawText("h4", self.gameState.nextCurseB, 200, 420, 1066, "left", "black")
-	common.drawText("h4", self.gameState.nextCurseC, 200, 590, 1066, "left", "black")
+	common.drawText("h4", self.gameState.nextCurseA, 370, 250, 1066, "left", "black")
+	common.drawText("h4", self.gameState.nextCurseB, 370, 420, 1066, "left", "black")
+	common.drawText("h4", self.gameState.nextCurseC, 370, 590, 1066, "left", "black")
 
 	if self.counterCurrent >= self.counterMax then
 	   -- draw enter button
 	   love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
 	end
-
 end
 
 function gameModeCurseClass:keypressed(key)

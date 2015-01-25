@@ -54,7 +54,7 @@ function gameStateClass.new()
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Princess", self)
 	self.player3 = playerClass.new("img/player_C_map.png", "img/player_c.png", self.tileMap:getPos(3, 30),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "Peasant", self)
-	self.player4 = playerClass.new("img/evil.png", "img/player_d.png", self.tileMap:getPos(20, 15),
+	self.player4 = playerClass.new("img/player_D_map.png", "img/player_d.png", self.tileMap:getPos(20, 15),
 				  {width = common.tileSize*3, height = common.tileSize*3}, "BadGuy", self)
 	
 	-- fsm transitions
