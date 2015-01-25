@@ -9,6 +9,10 @@ function gameModeRulesClass.new(gameState)
   local self = setmetatable({}, gameModeRulesClass)
   self.moduleName = "gameModeRulesClass"
   self.gameState = gameState
+
+  self.counterMax = 5.0
+  self.counterBlockInput = 2.0
+  self.counterCurrent = 0.0
   return self
 end
 
@@ -17,7 +21,7 @@ function gameModeRulesClass:load()
 end
 
 function gameModeRulesClass:update(dt)
-    
+   self.counterCurrent = self.counterCurrent + dt
 end
 
 function gameModeRulesClass:draw()
@@ -56,13 +60,17 @@ function gameModeRulesClass:draw()
 
 	
     -- draw enter button
-	love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
+	if self.counterCurrent >= self.counterMax then
+	   love.graphics.draw(common.enterImage, 1200, 650, 0, 0.5, 0.5)
+	end
 end
 
 function gameModeRulesClass:keypressed(key)
-	if key == "return" then
-		self.gameState:callGameModeAction(self.gameState.actionStart)
-	end
+   if self.counterCurrent >= self.counterBlockInput then
+      if key == "return" then
+	 self.gameState:callGameModeAction(self.gameState.actionStart)
+      end
+   end
 end
 
 function gameModeRulesClass.keyreleased(key)

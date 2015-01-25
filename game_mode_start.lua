@@ -15,9 +15,9 @@ function gameModeStartClass.new(gameState)
 	self.playerCReady = false
 	self.playerDReady = false
   
-	self.counterDigit = 3;
-	self.counterMax = 4.0;
-	self.counterCurrent = 0.0;
+	self.counterDigit = 3
+	self.counterMax = 4.0
+	self.counterCurrent = 0.0
   
 	return self
 end
