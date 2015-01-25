@@ -38,7 +38,6 @@ function gameModeRunClass:update(dt)
    self.gameState.coinsToSpawn = 0
 
    if (self.gameState.badGuyRespawn) then
-      print("Trying to respawn bad guy.")
       local pos = self.gameState.tileMap:getPos(16, 19)
       self.gameState.player4.physics.body:setPosition(pos.x, pos.y)
       love.mouse.setPosition(pos.x, pos.y)

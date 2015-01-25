@@ -116,7 +116,8 @@ function gameStateClass:callGameModeAction(actionName)
 	-- Run screen
 	elseif self.currentGameMode == self.GM_Run and actionName == self.actionEndGame then
 		-- goto end
-		self.currentGameMode = self.GM_End
+	   common.stopAllAmbientSounds()
+	   self.currentGameMode = self.GM_End
 	
 	-- Run screen		
 	elseif self.currentGameMode == self.GM_Run and actionName == self.actionBadGuyContact then

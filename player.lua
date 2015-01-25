@@ -64,6 +64,7 @@ function playerClass:onCollision(other)
 	    self.score = self.score + 1
 	    self.gameState.currentGameMode:removeCoin(other)
 	    self.gameState.coinsToSpawn = self.gameState.coinsToSpawn + 1
+	    love.audio.play(common.coinCollectedSound)
 	 end
       end
    end
